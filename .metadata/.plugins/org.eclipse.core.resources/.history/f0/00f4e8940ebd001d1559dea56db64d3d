@@ -1,0 +1,13 @@
+package clases;
+
+import java.awt.Dimension;
+
+public class pruebas {
+
+	public static void main(String[] args) {
+		Ventana v = new Ventana();
+		v.setSize(new Dimension(600,400));
+
+	}
+
+}

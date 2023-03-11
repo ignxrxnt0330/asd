@@ -1,0 +1,14 @@
+package gui;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class home {
+
+	public home() {
+		JFrame ventana = new JFrame();
+		JPanel dcha = new JPanel();
+		JPanel izda = new JPanel();
+	}
+
+}

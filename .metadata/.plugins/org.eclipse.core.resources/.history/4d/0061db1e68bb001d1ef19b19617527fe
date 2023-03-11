@@ -1,0 +1,26 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class home {
+
+	public home() {
+		JFrame ventana = new JFrame();
+		
+
+		frame.add(panel,BorderLayout.CENTER);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("asd");
+		frame.pack();
+		frame.setVisible(true);
+		frame.getContentPane().setBackground(Color.black);
+		
+		JPanel izda = new JPanel();
+		JPanel dcha = new JPanel();
+	}
+
+}

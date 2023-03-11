@@ -1,0 +1,8 @@
+
+public class Ventana {
+
+	public Ventana() {
+		Jframe Ventana = new JFrame();
+	}
+
+}

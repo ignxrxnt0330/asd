@@ -1,0 +1,48 @@
+package clases;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class Mrds_clase extends Ventana implements ActionListener{
+
+	public Mrds_clase() {
+        Ventana mrds_clase = new Ventana();
+
+        JPanel panel3 = new JPanel();
+        panel3.setPreferredSize(new Dimension(100,100));
+        panel3.setBackground(Color.blue);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        panel.setPreferredSize(new Dimension(100,100));
+        panel.setBackground(Color.green);
+        
+        JPanel panel2 = new JPanel();
+        panel2.setPreferredSize(new Dimension(100,100));
+        panel2.setBackground(Color.red);
+        
+        JButton home_btn = new JButton("Home");
+        JButton mrds_clase_btn = new JButton("mrds_clase");
+        
+        Dimension btn_size = new Dimension(100,30);
+        
+        home_btn.setSize(btn_size);
+        mrds_clase_btn.setSize(btn_size);
+        
+        panel2.add(home_btn);
+        panel2.add(mrds_clase_btn);
+        
+        
+        mrds_clase.add(panel,BorderLayout.NORTH);
+        mrds_clase.add(panel2,BorderLayout.WEST);
+        mrds_clase.add(panel3,BorderLayout.CENTER);
+        mrds_clase.pack();
+        mrds_clase.setVisible(false);
+	}
+
+}

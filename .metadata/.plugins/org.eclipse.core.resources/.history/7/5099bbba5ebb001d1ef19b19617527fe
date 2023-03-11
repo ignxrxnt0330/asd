@@ -1,0 +1,12 @@
+package gui;
+
+import javax.swing.JFrame;
+
+public class Frame extends JFrame{
+
+	public Frame() {
+		frame = new JFrame();
+		frame.setSize(600,400);
+	}
+
+}

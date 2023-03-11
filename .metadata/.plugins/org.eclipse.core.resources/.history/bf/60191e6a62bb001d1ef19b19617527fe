@@ -1,0 +1,43 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GUI_prueba {
+	private int clicks = 0;
+	private JLabel label;
+	private JFrame frame;
+	
+	public GUI_prueba() {
+
+		JFrame frame = new JFrame();
+		
+		JButton button = new JButton("Click me");
+		
+		JPanel panel = new JPanel();
+		
+		panel.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
+		panel.setLayout(new GridLayout(0,1));
+		panel.add(button);
+		panel.add(label);
+		
+		frame.add(panel,BorderLayout.CENTER);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("asd");
+		frame.pack();
+		frame.setVisible(true);
+		frame.getContentPane().setBackground(Color.black);
+	}
+	public static void main(String[] args) {
+		GUI_prueba GUI  = new GUI_prueba();
+	}
+		
+}

@@ -1,0 +1,9 @@
+package pruebas;
+public class Pruebas {
+
+	public static void main(String[] args) {
+		Ventana v = new Ventana();
+
+	}
+
+}

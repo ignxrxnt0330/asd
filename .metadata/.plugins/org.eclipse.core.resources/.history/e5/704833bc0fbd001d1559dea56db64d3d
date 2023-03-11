@@ -1,0 +1,9 @@
+package clases;
+
+public class Boton {
+
+	public Boton() {
+		JButton boton = new JButton();
+	}
+
+}

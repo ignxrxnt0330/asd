@@ -1,0 +1,11 @@
+package clases;
+
+public class pruebas {
+
+	public static void main(String[] args) {
+		Ventana v = new Ventana();
+		v.setMinimumSize(new Dimension(600,400));
+
+	}
+
+}

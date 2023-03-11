@@ -1,0 +1,12 @@
+package gui;
+
+public class GUI_prueba {
+
+	public GUI_prueba() {
+		
+	}
+	public static void main(String[] args) {
+		GUI GUI_2 = new GUI_2();
+	}
+
+}

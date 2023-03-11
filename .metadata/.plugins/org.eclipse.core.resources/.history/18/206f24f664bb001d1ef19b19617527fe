@@ -1,0 +1,34 @@
+package pruebas;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class GUI {
+	
+	public GUI() {
+		JFrame frame = new JFrame();
+		frame.setTitle("asd");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600, 400);
+		frame.pack();
+		frame.setVisible(true);
+		frame.getContentPane().setBackground(Color.black);
+
+		JPanel izda = new JPanel();
+		
+		izda.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
+		izda.setLayout(new GridLayout(0,1));
+		
+		JPanel dcha = new JPanel();
+		
+		
+
+		frame.add(izda, BorderLayout.PAGE_START);
+		frame.add(dcha, BorderLayout.AFTER_LAST_LINE);
+	}
+}

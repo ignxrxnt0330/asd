@@ -1,0 +1,41 @@
+package gui;
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class MyApplication {
+
+    public static void main(String[] args) {
+        // Start the Swing EDT
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                // Create the main frame
+                JFrame frame = new JFrame("My Application");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                // Create a panel
+                JPanel panel = new JPanel();
+                panel.setLayout(new BorderLayout());
+
+                // Create some components and add them to the panel
+                JLabel label = new JLabel("Hello, World!");
+                panel.add(label, BorderLayout.CENTER);
+
+                JButton button = new JButton("Click me!");
+                panel.add(button, BorderLayout.SOUTH);
+
+                // Add the panel to the frame and pack the components
+                frame.add(panel);
+                frame.pack();
+
+                // Show the frame
+                frame.setVisible(true);
+            }
+        });
+    }
+
+}

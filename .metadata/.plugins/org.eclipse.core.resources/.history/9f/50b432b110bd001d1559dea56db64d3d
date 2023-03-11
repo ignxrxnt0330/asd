@@ -1,0 +1,62 @@
+package clases;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+
+public class Home implements ActionListener{
+
+	public Home() {
+		Ventana home = new Ventana();
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(100, 100));
+		panel.setBackground(Color.blue);
+
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new FlowLayout());
+		panel.setPreferredSize(new Dimension(100, 100));
+		panel2.setBackground(Color.green);
+
+		JPanel panel3 = new JPanel();
+		panel.setPreferredSize(new Dimension(100, 100));
+		panel3.setBackground(Color.red);
+
+		Boton home_btn = new Boton("Home");
+		home_btn.addActionListener(this);
+		
+		Boton mc_btn = new Boton("mrds_clase");
+		mc_btn.addActionListener(this);
+		
+
+		panel2.add(home_btn);
+
+		home.add(panel, BorderLayout.NORTH);
+		home.add(panel2, BorderLayout.WEST);
+		home.add(panel3, BorderLayout.CENTER);
+		home.pack();
+		home.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {if (e.getSource() == mc_btn) {
+		mrds_clase.setVisible(true);
+		mrds_clase_btn.setEnabled(false);
+		home.setVisible(false);
+		home.setEnabled(true);
+
+	} else if (e.getSource() == home_btn) {
+		home.setVisible(true);
+		home.setEnabled(false);
+		mrds_clase.setVisible(false);
+		mrds_clase_btn.setEnabled(true);
+
+	}
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+package gui;
+
+
+public class GUI {
+		
+	public GUI() {
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		GUI GUI = new GUI();
+	}
+
+
+}

@@ -1,0 +1,10 @@
+package clases;
+
+public class Mrds_clase extends Ventana{
+
+	public Mrds_clase() {
+        Ventana mrds_clase = new Ventana();
+		
+	}
+
+}

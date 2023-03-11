@@ -1,0 +1,22 @@
+package gui;
+
+import java.awt.Color;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+public class MyFrame extends JFrame{
+º
+	 MyFrame() {
+		this.setSize(600,400);
+		this.setDefaultCloseOperation(Jthis.EXIT_ON_CLOSE);
+		this.setTitle("asd");
+		this.pack();
+		this.setVisible(true);
+		
+		ImageIcon favicon = new ImageIcon("favicon.png");
+		this.setIconImage(favicon.getImage());
+		this.getContentPane().setBackground(Color.black);
+	}
+
+}

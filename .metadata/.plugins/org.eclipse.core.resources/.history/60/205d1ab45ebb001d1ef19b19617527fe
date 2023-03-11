@@ -1,0 +1,9 @@
+package gui;
+
+public class Frame extends JFrame{
+
+	public Frame() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

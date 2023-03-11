@@ -1,0 +1,22 @@
+package clases;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+public class Ventana extends JFrame {
+
+	public Ventana() {
+    	//Declarar ventana y establecer tamaño y color
+        JFrame ventana = new JFrame("asd");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(new Dimension(600,400));
+        ventana.pack();
+        ImageIcon favicon = new ImageIcon("favicon.png");
+        ventana.setIconImage(favicon.getImage());
+		
+	}
+
+}

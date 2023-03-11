@@ -1,0 +1,10 @@
+package gui;
+
+public class VentanaActiva {
+
+	public static void main(String[] args) {
+		GUI GUI = new GUI();
+		
+	}
+
+}

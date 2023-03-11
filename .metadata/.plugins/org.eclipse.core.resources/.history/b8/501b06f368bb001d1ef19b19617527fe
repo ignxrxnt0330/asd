@@ -1,0 +1,30 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Home {
+
+	public Home() {
+		JFrame ventana = new JFrame();
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setTitle("asd");
+		ventana.setSize(600,400);
+		ventana.pack();
+		ventana.setVisible(true);
+		ventana.getContentPane().setBackground(Color.black);
+		
+		JPanel izda = new JPanel();
+		ventana.add(izda,BorderLayout.CENTER);
+
+		JPanel dcha = new JPanel();
+		ventana.add(dcha,BorderLayout.CENTER);
+
+		
+	}
+	Home home = new Home();
+
+}

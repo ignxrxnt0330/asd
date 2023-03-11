@@ -1,0 +1,15 @@
+package clases;
+
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+
+public class Boton extends JButton{
+
+	public Boton(String texto) {
+		JButton boton = new JButton();
+		boton.setSize(null);
+		Dimension btn_size = new Dimension(100, 30);
+	}
+
+}
