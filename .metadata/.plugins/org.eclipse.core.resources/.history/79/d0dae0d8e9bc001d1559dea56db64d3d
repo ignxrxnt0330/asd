@@ -1,9 +1,0 @@
-package clases;
-
-public class Mrds_clase {
-
-	public Mrds_clase() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

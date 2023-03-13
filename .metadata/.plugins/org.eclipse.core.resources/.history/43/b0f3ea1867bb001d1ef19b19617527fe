@@ -1,9 +1,0 @@
-package gui;
-
-public class contadorDeClicks {
-
-	public contadorDeClicks() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

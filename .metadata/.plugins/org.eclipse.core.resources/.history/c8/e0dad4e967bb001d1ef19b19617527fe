@@ -1,9 +1,0 @@
-package gui;
-
-public class home {
-
-	public home() {
-		JFrame ventana = new JFrame();
-	}
-
-}

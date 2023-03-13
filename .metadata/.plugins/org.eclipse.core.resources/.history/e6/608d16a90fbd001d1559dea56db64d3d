@@ -1,9 +1,0 @@
-package clases;
-
-public class Boton {
-
-	public Boton() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
