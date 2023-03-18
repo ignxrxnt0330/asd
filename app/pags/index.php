@@ -1,6 +1,4 @@
-<?php
-include("../templates/asd.php");
-?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,10 +7,12 @@ include("../templates/asd.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=icon type="image/png" href="../imgs/favicon.png">
-    <link rel="stylesheet" ype="text/css" href="../css/style_index.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
     <title>asd</title>
  
-    
+    <?php
+        include("../templates/asd.php");
+    ?>
 
     <div id="asd">
         asd

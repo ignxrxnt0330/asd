@@ -1,22 +1,26 @@
 <?php
+
+
 ?>
 
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" ype="text/css" href="../css/a1.css">
+
+<link rel="stylesheet" type="text/css" href="../css/a1.css">
+<link rel="favicon" type="image/png" href="../imgs/favicon.png">
 </head>
 <body>
 <header>
         <!---marquee con asdasdasd que vaya con el hover del span-->
         <span>
-            asd
+            <?php
+            $pagina = pathinfo(basename($_SERVER['PHP_SELF']), PATHINFO_FILENAME);
+            if($pagina!="index")
+                echo $pagina;
+            else
+                echo "asd";
+            ?>
         </span>
     </header>
     <div id="todo">
-
-    <div id="tabs">
-        tabs
-    </div>
     <div id="barra_lateral">
         <div id="item">
             <a href="index.php">Home
@@ -40,7 +44,7 @@
     
     
     <div id="item">
-            <a href="">
+            <a href="braindump.php">
                 Brain dump
 				<ul id="subitems">
 					<li><a href="">mrds</a></li>
