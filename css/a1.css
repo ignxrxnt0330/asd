@@ -15,14 +15,15 @@ li{
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 @font-face {
-    font-family: consolas;
-    src: url(fonts/consolas/CONSOLA.TTF);
+    font-family:consolas;
+    src: url(../fonts/consolas/CONSOLA.TTF);
 }
 
 html{
     background-color:black;
     color:white;
     font-family:"consolas";
+    z-index:1;
 }
 
 header{
@@ -31,7 +32,13 @@ header{
 }
 
 header marquee{
-    display:none;
+    z-index:5;
+    position:absolute;
+    left:0px;
+}
+
+span:hover header marquee{
+    display:block
 }
 
 #todo{
@@ -64,21 +71,22 @@ header marquee{
 #subitems{
     display:none;
     position:absolute;
-    left:10%;
-    padding-top:10px;
+    left:5%;
     height: fit-content;
+    margin:0px;
+    margin-left:-10px;
 }
 
 #subitems li{
     list-style:armenian;
 }
 
-#item:hover{
-    height:100px;
-}
-
 #item:hover #subitems{
     display:block;
+}
+
+#item:nth-last-child(){
+    height:100px;
 }
 
 #asd{
@@ -88,5 +96,5 @@ header marquee{
     width:65%;
     height:500px;
     display:flex;
-    flex:wrap;
+    flex-wrap:wrap;
 }

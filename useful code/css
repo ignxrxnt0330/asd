@@ -1,41 +1,10 @@
-#todolist_items{
-    height:fit-content;
-    width:100%;
+/*botón*/
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
 }
 
-#todolist_item{
-    width: 100%;
-    min-width:300px;
-}
-
-#todolist_item:hover{
-    filter:brightness(50%);
-}
-
-#completados{
-    width:100%;
-    height:fit-content;
-    min-height:30%;
-}
-
-#todolist_item_completado{
-    filter:brightness(50%); 
-    display:none;
-}
-
-#todolist_item_completado a{
-    text-decoration:line-through;
-}
-
-#todolist_item_completado a:hover{
-    text-decoration: none;
-}
-
-#cerrar:checked ~ #todolist_item_completado{
-    display:block;
-}
-
-#cerrar{
+#braindump_item input[type="checkbox"]{
     -webkit-appearance: none;
     appearance: none;
     background-color:white;
@@ -50,7 +19,7 @@
     place-content: center;
 }
 
-#cerrar::before {
+input[type="checkbox"]::before {
     content: "";
     width: 0.65em;
     height: 0.65em;
@@ -62,6 +31,6 @@
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
-#cerrar:checked::before {
+input[type="checkbox"]:checked::before {
     transform: scale(1);
 }

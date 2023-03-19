@@ -9,7 +9,11 @@
 </head>
 <body>
 <header>
+    <span id="egg">
+        
         <!---marquee con asdasdasd que vaya con el hover del span-->
+        <!--- asd randoms que aparecen con dif posiciones, tamaños y º de rotacion al hacer click en el span--->
+        </span>
         <span>
             <?php
             $pagina = pathinfo(basename($_SERVER['PHP_SELF']), PATHINFO_FILENAME);
@@ -25,19 +29,13 @@
         <div id="item">
             <a href="index.php">Home
 				<ul id="subitems">
-					<li><a href="">mrds</a></li>
-					<li><a href="">asd</a></li>
-					<li><a href="">xdf</a></li>
 				</ul>
             </a>
 	</div>
     
     <div id="item">
-            <a href="">mrds
+            <a href="">Tally counters
 				<ul id="subitems">
-					<li><a href="">mrds</a></li>
-					<li><a href="">asd</a></li>
-					<li><a href="">xdf</a></li>
 				</ul>
             </a>
 	</div>
@@ -47,9 +45,6 @@
             <a href="braindump.php">
                 Brain dump
 				<ul id="subitems">
-					<li><a href="">mrds</a></li>
-					<li><a href="">asd</a></li>
-					<li><a href="">xdf</a></li>
 				</ul>
             </a>
 	</div>
@@ -65,9 +60,6 @@
             <a href="">
                 Typing game
 				<ul id="subitems">
-					<li><a href="">mrds</a></li>
-					<li><a href="">asd</a></li>
-					<li><a href="">xdf</a></li>
 				</ul>
             </a>
 	</div>
@@ -77,16 +69,13 @@
             <a href="">
                 Code
 				<ul id="subitems">
-					<li><a href="">mrds</a></li>
-					<li><a href="">asd</a></li>
-					<li><a href="">xdf</a></li>
 				</ul>
             </li> </a>
 	</div>
 
     <div id="item">
             <a href="">
-                Tally counters
+                mrds
 				<ul id="subitems">
 					<li><a href="">mrds</a></li>
 					<li><a href="">asd</a></li>

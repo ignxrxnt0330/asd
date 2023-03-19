@@ -18,32 +18,54 @@ require("db_connection.php");
     <?php
         include("../templates/asd.php");
     ?>
-
+    
+    <!--- Items sin completar --->
     <div id="asd">
-        <div id="menu">
-            <button>Clear completed</button>
-        </div>
-        <?php
-            $sql = "SELECT *  FROM todolist";
+        <div id="todolist_items">
+            <?php
+            $sql = "SELECT *  FROM todolist where completado=0 order by fecha";
             $result = mysqli_query($conn, $sql);
             
             if (mysqli_num_rows($result) > 0) {
-                // output data of each row
                 while($row = mysqli_fetch_assoc($result)) {
-                  
-                echo "<div id=todolist_item>";
-                echo "<h2>" . $row["titulo"] . "</h2> <p>" . $row["fecha"] . "</p>";
-                echo "<p>" . $row["descripcion"] . "</p>";
-                echo "</div>";
-                    
+                $idcompl=$row['id'];
+                    echo " <a href='../php/completar_tdl.php?idcompl=$idcompl'><div id=todolist_item>";
+                    echo "<h2>" . $row["titulo"] ."  ". $row["fecha"] . "</h2> <p>" . $row["descripcion"] ."</p>";
+                    echo "</div></a>";                    
                 }
               } else {
-                echo "0 results";
+                echo "No hay items que mostrar";
               }
             
               mysqli_close($conn);
         ?>
-    </div>
+            </div>
+        
+            <!--- Items completados --->
+        <div id="completados">
+            <hr>
+            <input type="checkbox" id="cerrar">
+               Completados
+            </input>
+            <?php
+            require("db_connection.php");
+            $sql = "SELECT *  FROM todolist where completado=1 order by fecha" ;
+            $result = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)) {
+                  $iddesc=$row['id'];
+                      echo "<div id=todolist_item_completado><a href='../php/descompletar_tdl.php?iddesc=$iddesc'>";
+                      echo "<h2>" . $row["titulo"] ."  ". $row["fecha"] . "</h2> <p>" . $row["descripcion"] ."</p>";
+                      echo "</a></div>";
+                  
+                      
+                  }
+                } else {
+                  echo "0 results";
+                }
+            ?>
+        <div>
     </div>
 
 </body>
