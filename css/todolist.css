@@ -65,3 +65,13 @@
 #cerrar:checked::before {
     transform: scale(1);
 }
+
+#insertar form{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+form input{
+    background-color:black;
+    color:white;
+}

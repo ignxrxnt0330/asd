@@ -21,6 +21,17 @@ require("db_connection.php");
     
     <!--- Items sin completar --->
     <div id="asd">
+        <div id="insertar">
+            <form action="../php/nuevoItem_tdl.php" method="post">
+                <input type="text" id="titulo" name="titulo" placeholder="asd"><br>
+                
+                <input type="text" id="descripcion" name="descripcion" placeholder="asdasdasdasdasd"><br>
+
+                <input type="text" id="fecha" name="fecha" placeholder="asd-asd-asd"><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
         <div id="todolist_items">
             <?php
             $sql = "SELECT *  FROM todolist where completado=0 order by fecha";
