@@ -8,5 +8,6 @@ mysqli_query($conn, $sql);
 
 mysqli_close($conn);
 
-include("C:/xampp/htdocs/asd/pags/todolist.php");
+header("Location: http://localhost/asd/pags/todolist.php");
+exit();
 ?>

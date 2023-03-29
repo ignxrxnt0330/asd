@@ -23,11 +23,11 @@ require("db_connection.php");
     <div id="asd">
         <div id="insertar">
             <form action="../php/nuevoItem_tdl.php" method="post">
-                <input type="text" id="titulo" name="titulo" placeholder="asd"><br>
+                <input type="text" id="titulo" name="titulo" placeholder="asd" autocomplete="off"><br>
                 
-                <input type="text" id="descripcion" name="descripcion" placeholder="asdasdasdasdasd"><br>
+                <input type="text" id="descripcion" name="descripcion" placeholder="asdasdasdasdasd" autocomplete="off"><br>
 
-                <input type="text" id="fecha" name="fecha" placeholder="asd-asd-asd"><br>
+                <input type="text" id="fecha" name="fecha" placeholder="asd-asd-asd" autocomplete="off"><br>
 
                 <input type="submit" value="Submit">
             </form>

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: splash;
+    src: url(../fonts/mc/Minecraftia-Regular.ttf);
+}
+
+#splash{
+    color:yellow;
+    font-family:"splash";
+}

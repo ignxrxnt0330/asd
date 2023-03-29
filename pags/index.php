@@ -16,7 +16,9 @@
 
     <div id="asd">
         <?php
-        include("C:/xampp/htdocs/asd/pags/splashes.php");
+        include("C:/xampp/htdocs/asd/php/splashes.php");
+        ## include("C:/xampp/htdocs/asd/php/urbanDic.php");
+        ##optimizar request de api, para que se haga una vez al dia y se guarde localmente
         ?>
     </div>
     </div>

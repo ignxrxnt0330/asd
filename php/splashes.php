@@ -7,7 +7,10 @@ while(!feof($splashes)) {
     $linea = fgets($splashes); // Get the next line in the file
     $num_lineas++; // Increment the counter variable
     if($num_lineas==$splash){
+        echo "<div id='splash'>";
         echo $linea;
+        echo "</div>";
+        break;
     }
 }
 

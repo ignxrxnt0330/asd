@@ -27,7 +27,7 @@
     <div id="todo">
     <div id="barra_lateral">
         <div id="item">
-            <a href="index.php">Home
+            <a href="/asd/pags/index.php">Home
 				<ul id="subitems">
 				</ul>
             </a>
@@ -42,7 +42,7 @@
     
     
     <div id="item">
-            <a href="braindump.php">
+            <a href="/asd/pags/braindump.php">
                 Brain dump
 				<ul id="subitems">
 				</ul>
@@ -50,7 +50,7 @@
 	</div>
     
     <div id="item">
-            <a href="../pags/todolist.php">
+            <a href="/asd/pags/todolist.php">
                 To-do list
             </a>
 	</div>
