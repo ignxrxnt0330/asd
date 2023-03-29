@@ -15,7 +15,9 @@
     ?>
 
     <div id="asd">
-        asd
+        <?php
+        include("C:/xampp/htdocs/asd/pags/splashes.php");
+        ?>
     </div>
     </div>
 
