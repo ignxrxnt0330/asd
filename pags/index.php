@@ -17,8 +17,11 @@
     <div id="asd">
         <?php
         include("C:/xampp/htdocs/asd/php/splashes.php");
-        ## include("C:/xampp/htdocs/asd/php/urbanDic.php");
-        ##optimizar request de api, para que se haga una vez al dia y se guarde localmente
+        // session_start();
+        // echo $_SESSION['definition'];
+        // include("C:/xampp/htdocs/asd/php/urbanDic.php");
+        ## optimizar request de api, para que se haga una vez al dia y se guarde localmente
+        ## arreglar $_session o buscar otra mrd, igual cookies que duren 24h
         ?>
     </div>
     </div>

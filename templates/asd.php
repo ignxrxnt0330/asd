@@ -6,11 +6,11 @@
 
 <link rel="stylesheet" type="text/css" href="../css/a1.css">
 <link rel="favicon" type="image/png" href="../imgs/favicon.png">
+<meta charset="utf-8">
 </head>
 <body>
 <header>
     <span id="egg">
-        
         <!---marquee con asdasdasd que vaya con el hover del span-->
         <!--- asd randoms que aparecen con dif posiciones, tamaños y º de rotacion al hacer click en el span--->
         </span>
@@ -39,16 +39,7 @@
 				</ul>
             </a>
 	</div>
-    
-    
-    <div id="item">
-            <a href="/asd/pags/braindump.php">
-                Brain dump
-				<ul id="subitems">
-				</ul>
-            </a>
-	</div>
-    
+  
     <div id="item">
             <a href="/asd/pags/todolist.php">
                 To-do list
@@ -57,7 +48,7 @@
 
     
     <div id="item">
-            <a href="">
+            <a href="../typing game/index.html">
                 Typing game
 				<ul id="subitems">
 				</ul>

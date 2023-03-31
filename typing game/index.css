@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "consolas";
+    src: url(../fonts/consolas/CONSOLA.TTF);
+}
+
+html{
+    background-color: black;
+    color:white;
+    font-family: consolas;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+header{
+    text-align:center;
+}
+
+div{
+    border:white 1px solid;
+}
+
+#game{
+    height:500px;
+    width:800px;
+    margin-top:50px;
+    display:flex;
+    flex-wrap:wrap;
+    align-content: space-between;
+}
+
+#game div{
+    width:100%;
+    height:40%;
+    display: grid;
+    place-items: center;
+}
+
+#text{
+    
+}

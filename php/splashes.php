@@ -1,7 +1,7 @@
 <?php
 
-$splashes = fopen("C:/xampp/htdocs/asd/assets/splashes.txt","r");
-$splash = rand(1,365);
+$splashes = fopen("C:/xampp/htdocs/asd/misc/splashes.txt","r");
+$splash = rand(1,375);
 $num_lineas=0;
 while(!feof($splashes)) {
     $linea = fgets($splashes); // Get the next line in the file

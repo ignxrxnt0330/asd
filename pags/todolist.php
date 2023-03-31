@@ -34,13 +34,13 @@ require("db_connection.php");
         </div>
         <div id="todolist_items">
             <?php
-            $sql = "SELECT *  FROM todolist where completado=0 order by fecha";
+            $sql = "SELECT *  FROM todolist where completado=0 order by fecha,id desc";
             $result = mysqli_query($conn, $sql);
             
             if (mysqli_num_rows($result) > 0) {
                 while($row = mysqli_fetch_assoc($result)) {
                 $idcompl=$row['id'];
-                    echo " <a href='../php/completar_tdl.php?idcompl=$idcompl'><div id=todolist_item>";
+                    echo "<a href='../php/completar_tdl.php?idcompl=$idcompl'><div id=todolist_item>";
                     echo "<h2>" . $row["titulo"] ."  ". $row["fecha"] . "</h2> <p>" . $row["descripcion"] ."</p>";
                     echo "</div></a>";                    
                 }

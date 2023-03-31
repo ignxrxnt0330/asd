@@ -8,9 +8,9 @@ $response = file_get_contents($url);
 // Convert the JSON response to an associative array
 $data = json_decode($response, true);
 
-// Get the first definition from the array
-$definition = $data['list'][0]['definition'];
+// def pilla la definicion
+$def = $data['list'][0]['definition'];
+session_start();
 
-// Output the definition
-echo $definition;
+$_SESSION['definition'] = $def;
 ?>
