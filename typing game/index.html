@@ -13,13 +13,36 @@
             Typing game
         </header>
 
-        <div id="game">
-            <div id="text">
-                asdasdasdasdasdasdasd
+        <div class="game">
+            <div class="arriba">
+                <div class="info">
+                    <div class="time_left">
+                        60s
+                    </div>
+                    <div class="wpm">
+                        wpm
+                    </div>
+                    <div class="acc">
+                        acc
+                    </div>
+                    <div class="cons">
+                        cons
+                    </div>
+                    <div class="ecount">
+                        errors
+                    </div>
+                </div>
+                <div class="quote">
+                </div>
             </div>
-            <div id="input_area">
-
+            <div class="abajo">
+                <textarea class="input_area" autofocus placeholder="asdadasd..." 
+                oninput="processCurrentText()"
+                onfocus="startGame()"></textarea>
             </div>
+            <!--- hacer botones-->
         </div>
+        
+    <script src="index.js" defer></script>
     </body>
 </html>
