@@ -6,7 +6,6 @@ let time_left;
 let timer = null;
 let acc = 0;    // accuracy
 let acc_text = document.querySelector(".acc");
-let cons = 0;   // consistency
 let ecount = 0; // error count
 let charsTyped = 0;
 let charsTypedQuote = 0;
@@ -18,7 +17,10 @@ let curr_input = 0;
 let curr_input_array = 0;
 let quote_words = quote.split(' ').length;
 let words = 0;
-let wpm = words/uptime;     
+let wpm = words/uptime; 
+let gameModeSelect = document.getElementById("mode"); // coge el select del html
+let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
+let gameMode = gameModeOption.text; // la variable gameMode es igual al seleccionado  
 
 // let acc_text = document.querySelector(".curr_accuracy");
 // let error_text = document.querySelector(".curr_errors");
@@ -45,7 +47,6 @@ input_area.addEventListener('keydown', (event) => {
 input_area.addEventListener('keydown', (event) => {
     if (event.key === 'Delete') {
         charsTypedQuote--;
-        total_errors++;
         charsTyped--;
         console.log('asd');
     }
@@ -57,7 +58,6 @@ function reset() {
     ecount = 0;
     total_errors=0;
     charsTyped = 0;
-    // input_area.disabled = false;
     
     input_area.value = "";
 
@@ -76,8 +76,6 @@ function randomQuote() {
 
 // async function => se ejecuta sin hacer esperar al resto del código, se ejecuta en paralelo al resto
 // await => va con la async function y para la ejecución de la función hasta que se ejecute cierto código
-
-
 
 async function nextQuote(){
     quote = await randomQuote();
@@ -104,10 +102,13 @@ function reiniciarQuote(){
 }
 
 function comprobarTextoAcabado(){
-    if(input_area.value.length==quote.length){
-        reiniciarQuote();
-        total_errors+=ecount;
-    }
+    if (curr_input.length == quote.length) {
+    words+=quote_words;
+    reiniciarQuote();
+	total_errors += ecount;
+	input_area.value = "";
+
+}
 }
 
 function updateTimer(){
@@ -123,11 +124,11 @@ function updateTimer(){
 
 function updateWPM(){
     wpm = Math.round((((charsTyped / 5) / uptime) * 60))
-    wpm_text.innerText = wpm +"wpm";
+    wpm_text.innerText = wpm +" wpm";
 }
 
 function updateErrors(){
-    total_errors_text.innerText = (total_errors + ecount) +"s"
+    total_errors_text.innerText = (total_errors + ecount) +" errors"
 }
 
 function updateAcc(){
@@ -137,9 +138,14 @@ function updateAcc(){
 }
 
 function startGame (){
-    reset();
+    if(gameMode=="60s"){
+        reset();
     clearInterval(timer);
     timer = setInterval(updateTimer, 1000);
+    }
+    else{
+        endless();
+    }
 }
 
 function finishGame(){
@@ -151,8 +157,7 @@ function finishGame(){
 
 function processCurrentText() {
     console.log(total_errors)
-updateWPM();
-updateAcc();
+
 // pilla el texto y lo divide, con el split(''), que divide todo el string por chars
 curr_input = input_area.value;
 curr_input_array = curr_input.split('');
@@ -165,8 +170,6 @@ ecount=0;
 quoteSpanArray = quote_text.querySelectorAll('span');
 quoteSpanArray.forEach((char, index) => {
 	let typedChar = curr_input_array[index]
-
-   
 
     if(curr_input_array[index]!=" "){
         // character not currently typed
@@ -190,17 +193,22 @@ quoteSpanArray.forEach((char, index) => {
 }
 
 });
+updateWPM();
 updateErrors();
+updateAcc();
 comprobarTextoAcabado();
 
-if (curr_input.length == quote.length) {
-    words+=quote_words;+
-    reiniciarQuote();
+}
 
-	// update total errors
-	total_errors += ecount;
+function updateTimerEndless(){
+    uptime++;
+    time_left_text.innerText = uptime +"s";
+    updateWPM();
+}
 
-	// clear the input area
-	input_area.value = "";
+function endless(){
+    reset();
+    clearInterval(timer);
+    timer = setInterval(updateTimerEndless, 1000);
 
-}}
+}

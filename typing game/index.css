@@ -107,3 +107,9 @@ textarea{
 .scrollRight{
     animation: scroll-right 0.1s linear ;
 }
+
+select#mode {
+    background-color: black;
+    color: white;
+    height: 20px;
+}
