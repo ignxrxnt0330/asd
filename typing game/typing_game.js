@@ -195,7 +195,7 @@ comprobarTextoAcabado();
 
 // event listener skip quote
 document.addEventListener('keydown', function(event) {
-    if (event.shiftKey && (event.keyCode === 39 || event.key === 'ArrowRight')) {
+    if (event.shiftKey && (event.key === 39 || event.key === 'ArrowRight')) {
         reiniciarQuote();
         console.log('asd');
     }

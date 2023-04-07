@@ -33,7 +33,7 @@ html{
 .info{
     align-items: center;
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
 }
 
 .info div{
@@ -52,6 +52,8 @@ textarea{
     width:60%;
     height:40%;
     padding:10px;
+    border-style:none;
+    resize:none;
 }
 
 .nextChar{
@@ -87,7 +89,6 @@ textarea{
 
 .quote{
     padding:10px;
-    width:fit-content;
     min-width: 97%;
     overflow: hidden;
     white-space: nowrap;

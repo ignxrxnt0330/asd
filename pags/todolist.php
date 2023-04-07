@@ -31,6 +31,16 @@ require("db_connection.php");
 
                 <input type="submit" value="Submit">
             </form>
+            <?php
+            $sql = "SELECT count(*) as numItems  FROM todolist where completado=0";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)) {
+                 $items=$row['numItems'];
+                 echo "$items items";
+                }
+            }
+            ?>
         </div>
         <div id="todolist_items">
             <?php
