@@ -7,13 +7,13 @@
     <link rel=icon type="image/png" href="../imgs/favicon.png">
     <link rel="stylesheet" type="text/css" href="index.css">
     <title>typing game</title>
-    </head>
-    <body>
-        <header>
-            Typing game
-        </header>
+    
+    
+    <?php
+        include("../templates/asd.php");
+    ?>
 
-        <div class="game">
+        <div id="asd" class="game">
             <div class="arriba">
                 <div class="info">
                     <div class="time_left">

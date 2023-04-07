@@ -22,28 +22,19 @@ let gameModeSelect = document.getElementById("mode"); // coge el select del html
 let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
 let gameMode = gameModeOption.text; // la variable gameMode es igual al seleccionado  
 
-// let acc_text = document.querySelector(".curr_accuracy");
-// let error_text = document.querySelector(".curr_errors");
-// let cpm_text = document.querySelector(".curr_cpm");
 let wpm_text = document.querySelector(".wpm");
 let quote_text = document.querySelector(".quote");
 let input_area = document.querySelector(".input_area");
 let total_errors_text = document.querySelector(".ecount");
-// let restart_btn = document.querySelector(".restart_btn");
-// et cpm_group = document.querySelector(".cpm");
-// let wpm_group = document.querySelector(".wpm");
-// let error_group = document.querySelector(".errors");
-// let accuracy_group = document.querySelector(".accuracy");
 let time_left_text = document.querySelector(".time_left");
 
-// event listener para el exc
+// event listener para el esc
 input_area.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         reset();
     }
 });
 
-// event listener
 input_area.addEventListener('keydown', (event) => {
     if (event.key === 'Delete') {
         charsTypedQuote--;
@@ -51,6 +42,7 @@ input_area.addEventListener('keydown', (event) => {
         console.log('asd');
     }
 });
+ 
 
 function reset() {
     uptime = 0;
@@ -88,7 +80,7 @@ async function nextQuote(){
     charSpan.innerHTML = '&nbsp;'; // espacio
     }
     else{
-        charSpan.innerText = char ; // hace que el texto del spans sea la letra
+        charSpan.innerText = char ; // hace que el texto del span sea la letra
     }
         quote_text.appendChild(charSpan); // hace que el span de los chars se metan dentro de el contenedor del texto
     })
@@ -134,7 +126,7 @@ function updateErrors(){
 function updateAcc(){
     let correctCharacters = (charsTyped - (total_errors + ecount));
     acc = ((correctCharacters / charsTyped) * 100);
-    acc_text.innerText = Math.round(acc)+"%";
+    acc_text.innerText = Math.round(acc)+"% acc";
 }
 
 function startGame (){
@@ -153,10 +145,9 @@ function finishGame(){
     input_area.value="";
 }
 
-
-
 function processCurrentText() {
-    console.log(total_errors)
+
+ 
 
 // pilla el texto y lo divide, con el split(''), que divide todo el string por chars
 curr_input = input_area.value;
@@ -169,6 +160,7 @@ ecount=0;
 
 quoteSpanArray = quote_text.querySelectorAll('span');
 quoteSpanArray.forEach((char, index) => {
+	char.classList.remove('sig_char');
 	let typedChar = curr_input_array[index]
 
     if(curr_input_array[index]!=" "){
@@ -187,8 +179,10 @@ quoteSpanArray.forEach((char, index) => {
 	char.classList.add('incorrect_char');
 	char.classList.remove('correct_char');
 	// increment number of errors
-    bien = false;
 	ecount++;
+    }
+    if(index==(curr_input_array.length)){
+        char.classList.add('sig_char');
     }
 }
 
@@ -197,8 +191,15 @@ updateWPM();
 updateErrors();
 updateAcc();
 comprobarTextoAcabado();
-
 }
+
+// event listener skip quote
+document.addEventListener('keydown', function(event) {
+    if (event.shiftKey && (event.keyCode === 39 || event.key === 'ArrowRight')) {
+        reiniciarQuote();
+        console.log('asd');
+    }
+  });
 
 function updateTimerEndless(){
     uptime++;
