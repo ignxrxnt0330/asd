@@ -48,7 +48,7 @@
 
     
     <div id="item">
-            <a href="../typing game/index.php">
+            <a href="../typing game/typing_game.php">
                 Typing game
 				<ul id="subitems">
 				</ul>

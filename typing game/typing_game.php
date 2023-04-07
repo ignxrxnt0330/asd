@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=icon type="image/png" href="../imgs/favicon.png">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="typing_game.css">
     <title>typing game</title>
     
     
@@ -47,6 +47,6 @@
             <!--- hacer botones-->
         </div>
         
-    <script src="index.js" defer></script>
+    <script src="typing_game.js" defer></script>
     </body>
 </html>

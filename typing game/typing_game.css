@@ -12,15 +12,9 @@ html{
     justify-content: center;
 }
 
-header{
-    text-align:center;
-}
-
 .game{
-    height:500px;
-    width:800px;
-    display:flex;
-    flex-wrap:wrap;
+    width:100%;
+    min-width:500px;
 }
 
 .game div{
@@ -29,6 +23,7 @@ header{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
+    min-width:160px;
 }
 
 .text{
