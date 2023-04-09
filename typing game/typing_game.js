@@ -31,6 +31,7 @@ let time_left_text = document.querySelector(".time_left");
 // event listener para el esc
 input_area.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+        e.preventDefault();
         reset();
     }
 });
@@ -39,7 +40,6 @@ input_area.addEventListener('keydown', (event) => {
     if (event.key === 'Delete') {
         charsTypedQuote--;
         charsTyped--;
-        console.log('asd');
     }
 });
  
@@ -71,7 +71,6 @@ function randomQuote() {
 
 async function nextQuote(){
     quote = await randomQuote();
-    console.log(quote);
     quote_text.value = quote;
     quote.split('').forEach(char => {
     const charSpan = document.createElement('span'); // crea un span para cada letra
@@ -197,7 +196,6 @@ comprobarTextoAcabado();
 document.addEventListener('keydown', function(event) {
     if (event.shiftKey && (event.key === 39 || event.key === 'ArrowRight')) {
         reiniciarQuote();
-        console.log('asd');
     }
   });
 
