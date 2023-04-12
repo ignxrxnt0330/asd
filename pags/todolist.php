@@ -31,20 +31,20 @@ require("db_connection.php");
 
                 <input type="submit" value="Submit">
             </form>
-            <?php
-            $sql = "SELECT count(*) as numItems  FROM todolist where completado=0";
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
-                 $items=$row['numItems'];
-                 echo "$items items";
-                }
-            }
-            ?>
+            
         </div>
         <div id="todolist_items">
             <?php
-            $sql = "SELECT *  FROM todolist where completado=0 order by fecha,id desc";
+                    $sql = "SELECT count(*) as numItems  FROM todolist where completado=0";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+            $items=$row['numItems'];
+            echo "$items items";
+            }
+        }
+
+        $sql = "SELECT *  FROM todolist where completado=0 order by fecha,id desc";
             $result = mysqli_query($conn, $sql);
             
             if (mysqli_num_rows($result) > 0) {
@@ -58,8 +58,7 @@ require("db_connection.php");
                 echo "No hay items que mostrar";
               }
             
-              mysqli_close($conn);
-        ?>
+            ?>
             </div>
         
             <!--- Items completados --->
@@ -69,22 +68,21 @@ require("db_connection.php");
                Completados
             </input>
             <?php
-            require("db_connection.php");
-            $sql = "SELECT *  FROM todolist where completado=1 order by fecha" ;
-            $result = mysqli_query($conn, $sql);
+                    $sql = "SELECT *  FROM todolist where completado=1 order by fecha" ;
+        $result = mysqli_query($conn, $sql);
 
-            if (mysqli_num_rows($result) > 0) {
-                while($row = mysqli_fetch_assoc($result)) {
-                  $iddesc=$row['id'];
-                      echo "<div id=todolist_item_completado><a href='../php/descompletar_tdl.php?iddesc=$iddesc'>";
-                      echo "<h2>" . $row["titulo"] ."  ". $row["fecha"] . "</h2> <p>" . $row["descripcion"] ."</p>";
-                      echo "</a></div>";
-                  
-                      
-                  }
-                } else {
-                  echo "0 results";
-                }
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+            $iddesc=$row['id'];
+                echo "<div id=todolist_item_completado><a href='../php/descompletar_tdl.php?iddesc=$iddesc'>";
+                echo "<h2>" . $row["titulo"] ."  ". $row["fecha"] . "</h2> <p>" . $row["descripcion"] ."</p>";
+                echo "</a></div>";
+            
+                
+            }
+            } else {
+            echo "0 results";
+            }
             ?>
         <div>
     </div>

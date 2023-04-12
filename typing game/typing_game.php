@@ -40,13 +40,13 @@
                 </div>
             </div>
             <div class="abajo">
-                <textarea class="input_area" autofocus placeholder="asdadasd..." 
+                <textarea class="input_area" id="input_area" autofocus placeholder="asdadasd..." 
                 oninput="processCurrentText()"
                 onfocus="startGame()"></textarea>
             </div>
             <!--- hacer botones-->
         </div>
         
-    <script src="typing_game.js" defer></script>
+    <script src="typing_game.js"></script>
     </body>
 </html>

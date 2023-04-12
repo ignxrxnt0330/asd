@@ -15,7 +15,7 @@ let error_text = "";
 let total_errors = 0;
 let curr_input = 0;
 let curr_input_array = 0;
-let quote_words = quote.split(' ').length;
+let quote_words = quote.split(" ").length;
 let words = 0;
 let wpm = words/uptime; 
 let gameModeSelect = document.getElementById("mode"); // coge el select del html
@@ -28,21 +28,21 @@ let input_area = document.querySelector(".input_area");
 let total_errors_text = document.querySelector(".ecount");
 let time_left_text = document.querySelector(".time_left");
 
-// event listener para el esc
-input_area.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-        e.preventDefault();
-        reset();
+// event listener para el esc 
+input_area.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" || event.keyCode === 27) {
+        event.preventDefault();
+        reiniciarQuote();
     }
 });
 
-input_area.addEventListener('keydown', (event) => {
-    if (event.key === 'Delete') {
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Delete" || event.keyCode === 46) { //delete
         charsTypedQuote--;
         charsTyped--;
     }
 });
- 
 
 function reset() {
     uptime = 0;
@@ -71,12 +71,13 @@ function randomQuote() {
 
 async function nextQuote(){
     quote = await randomQuote();
+    console.log(quote)
     quote_text.value = quote;
-    quote.split('').forEach(char => {
-    const charSpan = document.createElement('span'); // crea un span para cada letra
+    quote.split("").forEach(char => {
+    const charSpan = document.createElement("span"); // crea un span para cada letra
 
-    if (char === ' ') { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
-    charSpan.innerHTML = '&nbsp;'; // espacio
+    if (char === " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
+    charSpan.innerHTML = "&nbsp;"; // espacio
     }
     else{
         charSpan.innerText = char ; // hace que el texto del span sea la letra
@@ -145,44 +146,46 @@ function finishGame(){
 }
 
 function processCurrentText() {
-
- 
-
-// pilla el texto y lo divide, con el split(''), que divide todo el string por chars
+// pilla el texto y lo divide, con el split(""), que divide todo el string por chars
 curr_input = input_area.value;
-curr_input_array = curr_input.split('');
+curr_input_array = curr_input.split("");
 
 // increment total characters typed
 charsTypedQuote++;
 charsTyped++;
 ecount=0;
 
-quoteSpanArray = quote_text.querySelectorAll('span');
+quoteSpanArray = quote_text.querySelectorAll("span");
 quoteSpanArray.forEach((char, index) => {
-	char.classList.remove('sig_char');
+	char.classList.remove("sig_char");
 	let typedChar = curr_input_array[index]
 
-    if(curr_input_array[index]!=" "){
+    if(typedChar!=" "){
         // character not currently typed
 	if (typedChar == null) {
-	char.classList.remove('correct_char');
-	char.classList.remove('incorrect_char');
+	char.classList.remove("correct_char");
+	char.classList.remove("incorrect_char");
 
 	// char correcto, añade los spans a la clase correct_char
 	} else if (typedChar === char.innerText) {
-	char.classList.add('correct_char');
-	char.classList.remove('incorrect_char');
+	char.classList.add("correct_char");
+	char.classList.remove("incorrect_char");
 
 	// char incorrecto, añade los spans a la clase incorrect_char
 	} else{
-	char.classList.add('incorrect_char');
-	char.classList.remove('correct_char');
+	char.classList.add("incorrect_char");
+	char.classList.remove("correct_char");
 	// increment number of errors
 	ecount++;
     }
     if(index==(curr_input_array.length)){
-        char.classList.add('sig_char');
+        char.classList.add("sig_char");
     }
+}
+
+if(typedChar==" " && quoteSpanArray[index].innerText==" "){
+    char.classList.add("correct_char");
+    char.classList.remove("incorrect_char");
 }
 
 });
@@ -191,13 +194,6 @@ updateErrors();
 updateAcc();
 comprobarTextoAcabado();
 }
-
-// event listener skip quote
-document.addEventListener('keydown', function(event) {
-    if (event.shiftKey && (event.key === 39 || event.key === 'ArrowRight')) {
-        reiniciarQuote();
-    }
-  });
 
 function updateTimerEndless(){
     uptime++;
