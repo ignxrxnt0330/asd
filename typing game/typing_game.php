@@ -36,15 +36,14 @@
                         </select>
                     </div>
                 </div>
-                <div class="quote">
-                </div>
+                <span class="quote">
+                </span>
             </div>
             <div class="abajo">
                 <textarea class="input_area" id="input_area" autofocus placeholder="asdadasd..." 
                 oninput="processCurrentText()"
                 onfocus="startGame()"></textarea>
             </div>
-            <!--- hacer botones-->
         </div>
         
     <script src="typing_game.js"></script>

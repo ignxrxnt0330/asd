@@ -6,4 +6,5 @@
 #splash{
     color:yellow;
     font-family:"splash";
+    height:min-content;
 }

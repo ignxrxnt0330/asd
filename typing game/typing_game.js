@@ -28,19 +28,31 @@ let input_area = document.querySelector(".input_area");
 let total_errors_text = document.querySelector(".ecount");
 let time_left_text = document.querySelector(".time_left");
 
+function scrollTyping(){
+    quote_text.classList.add('.scroll-left');
+    quote_text.classList.remove('.scroll-left');
+}
+
+function scrollDeleting(){
+    quote_text.classList.add('.scroll-right');
+    quote_text.classList.remove('.scroll-right');
+}
+
 // event listener para el esc 
 input_area.addEventListener("keydown", function(event) {
     if (event.key === "Escape" || event.keyCode === 27) {
         event.preventDefault();
         reiniciarQuote();
+        input_area.value = null; // lo pongo aquí porque he anulado el del nextQuote
     }
 });
 
 
-document.addEventListener("keydown", function(event) {
+input_area.addEventListener("keydown", function(event) {
     if (event.key === "Delete" || event.keyCode === 46) { //delete
         charsTypedQuote--;
         charsTyped--;
+        scrollDeleting();
     }
 });
 
@@ -59,11 +71,9 @@ function reset() {
 
 const url = "https://api.quotable.io/random"
 function randomQuote() {
-    return fetch(url) // hace fetch the la quote
-
-    // pilla los datos que vienen en tablas json y los ordena
-    .then(response => response.json())
-    .then(data => data.content)
+    return fetch(url)                   // hace fetch the la quote y lo devuelve
+    .then(response => response.json())  // pilla los datos que vienen en strings y los convierte en tablas json
+    .then(data => data.content)         // extrae el campo llamado "content", que es lo importante
 }
 
 // async function => se ejecuta sin hacer esperar al resto del código, se ejecuta en paralelo al resto
@@ -75,7 +85,7 @@ async function nextQuote(){
     quote_text.value = quote;
     quote.split("").forEach(char => {
     const charSpan = document.createElement("span"); // crea un span para cada letra
-
+    charSpan.classList.add('letra');
     if (char === " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
     charSpan.innerHTML = "&nbsp;"; // espacio
     }
@@ -84,12 +94,20 @@ async function nextQuote(){
     }
         quote_text.appendChild(charSpan); // hace que el span de los chars se metan dentro de el contenedor del texto
     })
-    input_area.value = null; // borra el texto cuando se completa
+    if(gameMode=="60s"){
+        input_area.value = null; // borra el texto cuando se completa
+    }
+}
+
+function nextQuoteInfinite(){
+    if(charsTyped+10>quote_text.value.length){
+        nextQuote();
+    }
 }
 
 function reiniciarQuote(){
     quote_text.innerText="";
-    randomQuote();
+    quote_text.scrollLeft-=10000;
     nextQuote();
 }
 
@@ -145,7 +163,16 @@ function finishGame(){
     input_area.value="";
 }
 
+
+
 function processCurrentText() {
+    quote_text.scrollLeft+=10;
+    input_area.addEventListener("keydown", function(event) {
+        if (event.key !== "Delete" || event.keyCode !== 46) { 
+            scrollTyping();
+        }
+    });
+
 // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
 curr_input = input_area.value;
 curr_input_array = curr_input.split("");
@@ -165,7 +192,7 @@ quoteSpanArray.forEach((char, index) => {
 	if (typedChar == null) {
 	char.classList.remove("correct_char");
 	char.classList.remove("incorrect_char");
-
+    
 	// char correcto, añade los spans a la clase correct_char
 	} else if (typedChar === char.innerText) {
 	char.classList.add("correct_char");
@@ -192,7 +219,13 @@ if(typedChar==" " && quoteSpanArray[index].innerText==" "){
 updateWPM();
 updateErrors();
 updateAcc();
-comprobarTextoAcabado();
+
+if(gameMode=="60s"){
+    comprobarTextoAcabado();
+}
+else{
+    nextQuoteInfinite();
+}
 }
 
 function updateTimerEndless(){
