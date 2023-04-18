@@ -21,6 +21,7 @@ let wpm = words/uptime;
 let gameModeSelect = document.getElementById("mode"); // coge el select del html
 let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
 let gameMode = gameModeOption.text; // la variable gameMode es igual al seleccionado  
+let not_typed_chars = quote_text.innerText.length-charsTyped;
 
 let wpm_text = document.querySelector(".wpm");
 let quote_text = document.querySelector(".quote");
@@ -28,15 +29,9 @@ let input_area = document.querySelector(".input_area");
 let total_errors_text = document.querySelector(".ecount");
 let time_left_text = document.querySelector(".time_left");
 
-function scrollTyping(){
-    quote_text.classList.add('.scroll-left');
-    quote_text.classList.remove('.scroll-left');
-}
 
-function scrollDeleting(){
-    quote_text.classList.add('.scroll-right');
-    quote_text.classList.remove('.scroll-right');
-}
+
+
 
 // event listener para el esc 
 input_area.addEventListener("keydown", function(event) {
@@ -48,11 +43,20 @@ input_area.addEventListener("keydown", function(event) {
 });
 
 
+input_area.addEventListener("keydown", function(event) { // hard reset
+    if (event.key === "Escape" || event.keyCode === 27) {
+        if(event.keyCode=="27" && event.shiftKey){
+        event.preventDefault();
+        reset();
+        input_area.value = null; 
+        }
+    }
+});
+
 input_area.addEventListener("keydown", function(event) {
     if (event.key === "Delete" || event.keyCode === 46) { //delete
         charsTypedQuote--;
         charsTyped--;
-        scrollDeleting();
     }
 });
 
@@ -80,14 +84,15 @@ function randomQuote() {
 // await => va con la async function y para la ejecución de la función hasta que se ejecute cierto código
 
 async function nextQuote(){
-    quote = await randomQuote();
+    quote = await randomQuote()+" ";
     console.log(quote)
     quote_text.value = quote;
     quote.split("").forEach(char => {
     const charSpan = document.createElement("span"); // crea un span para cada letra
     charSpan.classList.add('letra');
-    if (char === " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
+    if (char == " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
     charSpan.innerHTML = "&nbsp;"; // espacio
+    charSpan.classList.add('espacio');
     }
     else{
         charSpan.innerText = char ; // hace que el texto del span sea la letra
@@ -100,19 +105,18 @@ async function nextQuote(){
 }
 
 function nextQuoteInfinite(){
-    if(charsTyped+10>quote_text.value.length){
-        nextQuote();
+    if(not_typed_chars>=50)   {
+        setTimeout(nextQuote(),2000);  
     }
 }
 
 function reiniciarQuote(){
     quote_text.innerText="";
-    quote_text.scrollLeft-=10000;
     nextQuote();
 }
 
 function comprobarTextoAcabado(){
-    if (curr_input.length == quote.length) {
+    if (curr_input.length == quote_text.innerText.length) {
     words+=quote_words;
     reiniciarQuote();
 	total_errors += ecount;
@@ -166,12 +170,9 @@ function finishGame(){
 
 
 function processCurrentText() {
-    quote_text.scrollLeft+=10;
-    input_area.addEventListener("keydown", function(event) {
-        if (event.key !== "Delete" || event.keyCode !== 46) { 
-            scrollTyping();
-        }
-    });
+    not_typed_chars=quote_text.innerText.length-charsTyped;
+  
+    
 
 // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
 curr_input = input_area.value;
@@ -187,28 +188,30 @@ quoteSpanArray.forEach((char, index) => {
 	char.classList.remove("sig_char");
 	let typedChar = curr_input_array[index]
 
-    if(typedChar!=" "){
-        // character not currently typed
-	if (typedChar == null) {
-	char.classList.remove("correct_char");
-	char.classList.remove("incorrect_char");
     
-	// char correcto, añade los spans a la clase correct_char
-	} else if (typedChar === char.innerText) {
-	char.classList.add("correct_char");
-	char.classList.remove("incorrect_char");
 
-	// char incorrecto, añade los spans a la clase incorrect_char
-	} else{
-	char.classList.add("incorrect_char");
-	char.classList.remove("correct_char");
-	// increment number of errors
-	ecount++;
+    if (typedChar == null) {
+        char.classList.remove("correct_char");
+        char.classList.remove("incorrect_char");
+        
+        // char correcto, añade los spans a la clase correct_char
+    } else if (typedChar == char.innerText) {
+        char.classList.add("correct_char");
+        char.classList.remove("incorrect_char");
+        
+        // char incorrecto, añade los spans a la clase incorrect_char
+    } else{
+        if(!char.classList.contains('espacio')){
+            char.classList.add("incorrect_char");
+            char.classList.remove("correct_char");
+            ecount++;
+        }
     }
     if(index==(curr_input_array.length)){
         char.classList.add("sig_char");
     }
-}
+
+
 
 if(typedChar==" " && quoteSpanArray[index].innerText==" "){
     char.classList.add("correct_char");

@@ -95,6 +95,6 @@ span:hover header marquee{
     border:white 1px solid;
     width:65%;
     height:500px;
-    display:flex;
+    display:grid;
     flex-wrap:wrap;
 }

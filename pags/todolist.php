@@ -68,6 +68,14 @@ require("db_connection.php");
                Completados
             </input>
             <?php
+               $sql = "SELECT count(*) as numItems  FROM todolist where completado=1";
+               $result = mysqli_query($conn, $sql);
+               if (mysqli_num_rows($result) > 0) {
+                   while($row = mysqli_fetch_assoc($result)) {
+                   $items=$row['numItems'];
+                   echo "$items items";
+                   }
+               }
                     $sql = "SELECT *  FROM todolist where completado=1 order by fecha" ;
         $result = mysqli_query($conn, $sql);
 
