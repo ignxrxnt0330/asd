@@ -17,12 +17,14 @@
     <div id="asd">
         <?php
         include("C:/xampp/htdocs/asd/php/splashes.php");
-        // session_start();
-        // echo $_SESSION['definition'];
-        // include("C:/xampp/htdocs/asd/php/urbanDic.php");
-        ## optimizar request de api, para que se haga una vez al dia y se guarde localmente
-        ## arreglar $_session o buscar otra mrd, igual cookies que duren 24h
         ?>
+        <div class="container">
+    <div class=tag>Random word </div>
+        <div class="api" id="urbanDicRandom">
+            <script src="../apis/urbanDicRandom.js"></script>
+            <link rel="stylesheet" type="text/css" href="../css/api_madness.css">
+        </div>
+    </div>
     </div>
     </div>
 

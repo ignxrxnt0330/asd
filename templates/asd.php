@@ -20,7 +20,7 @@
             if($pagina!="index")
                 echo $pagina;
             else
-                echo "asd";
+                echo "<a href='https://github.com/ignxrxnt0330/asd/' target='_blank'> asd </a>";
             ?>
         </span>
     </header>

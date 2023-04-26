@@ -4,6 +4,7 @@ let time = 60;
 let uptime = 0;
 let time_left;
 let timer = null;
+let quote_infinite_update = null;
 let acc = 0;    // accuracy
 let acc_text = document.querySelector(".acc");
 let ecount = 0; // error count
@@ -21,7 +22,6 @@ let wpm = words/uptime;
 let gameModeSelect = document.getElementById("mode"); // coge el select del html
 let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
 let gameMode = gameModeOption.text; // la variable gameMode es igual al seleccionado  
-let not_typed_chars = quote_text.innerText.length-charsTyped;
 
 let wpm_text = document.querySelector(".wpm");
 let quote_text = document.querySelector(".quote");
@@ -57,8 +57,11 @@ input_area.addEventListener("keydown", function(event) {
     if (event.key === "Delete" || event.keyCode === 46) { //delete
         charsTypedQuote--;
         charsTyped--;
+        quote_text.scrollLeft+=10;
     }
 });
+
+
 
 function reset() {
     uptime = 0;
@@ -76,9 +79,11 @@ function reset() {
 const url = "https://api.quotable.io/random"
 function randomQuote() {
     return fetch(url)                   // hace fetch the la quote y lo devuelve
-    .then(response => response.json())  // pilla los datos que vienen en strings y los convierte en tablas json
+    .then(response => response.json())  // pilla los datos y los convierte en un objeto json, del que se extraerán los datos
     .then(data => data.content)         // extrae el campo llamado "content", que es lo importante
 }
+
+// los .then realizan acciones con el código que tienen encima
 
 // async function => se ejecuta sin hacer esperar al resto del código, se ejecuta en paralelo al resto
 // await => va con la async function y para la ejecución de la función hasta que se ejecute cierto código
@@ -101,12 +106,6 @@ async function nextQuote(){
     })
     if(gameMode=="60s"){
         input_area.value = null; // borra el texto cuando se completa
-    }
-}
-
-function nextQuoteInfinite(){
-    if(not_typed_chars>=50)   {
-        setTimeout(nextQuote(),2000);  
     }
 }
 
@@ -172,8 +171,6 @@ function finishGame(){
 function processCurrentText() {
     not_typed_chars=quote_text.innerText.length-charsTyped;
   
-    
-
 // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
 curr_input = input_area.value;
 curr_input_array = curr_input.split("");
@@ -223,12 +220,7 @@ updateWPM();
 updateErrors();
 updateAcc();
 
-if(gameMode=="60s"){
     comprobarTextoAcabado();
-}
-else{
-    nextQuoteInfinite();
-}
 }
 
 function updateTimerEndless(){
