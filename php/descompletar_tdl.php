@@ -1,14 +1,8 @@
 <?php
-
-require("C:/xampp/htdocs/asd/pags/db_connection.php");
-
+require("C:/xampp/htdocs/asd/php/Todolist.php");
 $id = $_GET['iddesc'];
 
-$sql = "update todolist set completado=0 where id=$id";
-mysqli_query($conn, $sql);
+Todolist::descompletar($id);
 
-mysqli_close($conn);
-
-header("Location: http://localhost/asd/pags/todolist.php");
-exit();
+header("Location: http://localhost/pags/todolist.php");
 ?>

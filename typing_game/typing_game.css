@@ -96,7 +96,7 @@ select#mode {
 }
 
 .sig_char{
-    animation: cursor 1.2s infinite normal;
+    animation: cursor 1s infinite normal;
 }
 
 span{

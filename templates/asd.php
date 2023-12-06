@@ -25,23 +25,23 @@
         </span>
     </header>
     <div id="todo">
-    <div id="barra_lateral">
+        <div id="barra_lateral">
         <div id="item">
-            <a href="/asd/pags/index.php">Home
+            <a href="/pags/index.php">Home
 				<ul id="subitems">
 				</ul>
             </a>
 	</div>
     
     <div id="item">
-            <a href="../pags/api_madness.php">API madness
+            <a href="/pags/api_madness.php">API madness
 				<ul id="subitems">
 				</ul>
             </a>
 	</div>
   
     <div id="item">
-            <a href="/asd/pags/todolist.php">
+            <a href="/pags/todolist.php">
                 To-do list
             </a>
 	</div>

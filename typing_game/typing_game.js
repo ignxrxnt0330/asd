@@ -18,7 +18,7 @@ let curr_input = 0;
 let curr_input_array = 0;
 let quote_words = quote.split(" ").length;
 let words = 0;
-let wpm = words/uptime; 
+let wpm = words / uptime;
 let gameModeSelect = document.getElementById("mode"); // coge el select del html
 let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
 let gameMode = gameModeOption.text; // la variable gameMode es igual al seleccionado  
@@ -28,13 +28,14 @@ let quote_text = document.querySelector(".quote");
 let input_area = document.querySelector(".input_area");
 let total_errors_text = document.querySelector(".ecount");
 let time_left_text = document.querySelector(".time_left");
+let quoteContainer = document.querySelector(".quote")
 
 
 
 
 
 // event listener para el esc 
-input_area.addEventListener("keydown", function(event) {
+input_area.addEventListener("keydown", function (event) {
     if (event.key === "Escape" || event.keyCode === 27) {
         event.preventDefault();
         reiniciarQuote();
@@ -43,21 +44,20 @@ input_area.addEventListener("keydown", function(event) {
 });
 
 
-input_area.addEventListener("keydown", function(event) { // hard reset
+input_area.addEventListener("keydown", function (event) { // hard reset
     if (event.key === "Escape" || event.keyCode === 27) {
-        if(event.keyCode=="27" && event.shiftKey){
-        event.preventDefault();
-        reset();
-        input_area.value = null; 
+        if (event.keyCode == "27" && event.shiftKey) {
+            event.preventDefault();
+            reset();
+            input_area.value = null;
         }
     }
 });
 
-input_area.addEventListener("keydown", function(event) {
+input_area.addEventListener("keydown", function (event) {
     if (event.key === "Delete" || event.keyCode === 46) { //delete
         charsTypedQuote--;
         charsTyped--;
-        quote_text.scrollLeft+=10;
     }
 });
 
@@ -67,9 +67,9 @@ function reset() {
     uptime = 0;
     time_left = time;
     ecount = 0;
-    total_errors=0;
+    total_errors = 0;
     charsTyped = 0;
-    
+
     input_area.value = "";
 
     // reinicia las quotes  
@@ -79,8 +79,8 @@ function reset() {
 const url = "https://api.quotable.io/random"
 function randomQuote() {
     return fetch(url)                   // hace fetch the la quote y lo devuelve
-    .then(response => response.json())  // pilla los datos y los convierte en un objeto json, del que se extraerán los datos
-    .then(data => data.content)         // extrae el campo llamado "content", que es lo importante
+        .then(response => response.json())  // pilla los datos y los convierte en json, de donde se extraerán los datos
+        .then(data => data.content)         // extrae el campo llamado "content", que es lo importante
 }
 
 // los .then realizan acciones con el código que tienen encima
@@ -88,150 +88,154 @@ function randomQuote() {
 // async function => se ejecuta sin hacer esperar al resto del código, se ejecuta en paralelo al resto
 // await => va con la async function y para la ejecución de la función hasta que se ejecute cierto código
 
-async function nextQuote(){
-    quote = await randomQuote()+" ";
+async function nextQuote() {
+    quote = await randomQuote() + " ";
     console.log(quote)
     quote_text.value = quote;
     quote.split("").forEach(char => {
-    const charSpan = document.createElement("span"); // crea un span para cada letra
-    charSpan.classList.add('letra');
-    if (char == " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
-    charSpan.innerHTML = "&nbsp;"; // espacio
-    charSpan.classList.add('espacio');
-    }
-    else{
-        charSpan.innerText = char ; // hace que el texto del span sea la letra
-    }
+        const charSpan = document.createElement("span"); // crea un span para cada letra
+        charSpan.classList.add('letra');
+        if (char == " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
+            charSpan.innerHTML = "&nbsp;"; // espacio
+            charSpan.classList.add('espacio');
+        }
+        else {
+            charSpan.innerText = char; // hace que el texto del span sea la letra
+        }
         quote_text.appendChild(charSpan); // hace que el span de los chars se metan dentro de el contenedor del texto
     })
-    if(gameMode=="60s"){
+    if (gameMode == "60s") {
         input_area.value = null; // borra el texto cuando se completa
     }
 }
 
-function reiniciarQuote(){
-    quote_text.innerText="";
+function reiniciarQuote() {
+    quote_text.innerText = "";
     nextQuote();
 }
 
-function comprobarTextoAcabado(){
+function comprobarTextoAcabado() {
     if (curr_input.length == quote_text.innerText.length) {
-    words+=quote_words;
-    reiniciarQuote();
-	total_errors += ecount;
-	input_area.value = "";
-
+        words += quote_words;
+        reiniciarQuote();
+        total_errors += ecount;
+        input_area.value = "";
+    }
 }
-}
 
-function updateTimer(){
-    if(time_left>0){
+function updateTimer() {
+    if (time_left > 0) {
         time_left--;
         uptime++;
-        time_left_text.innerText = time_left +"s";
+        time_left_text.innerText = time_left + "s";
         updateWPM();
     }
     else
         finishGame();
 }
 
-function updateWPM(){
+function updateWPM() {
     wpm = Math.round((((charsTyped / 5) / uptime) * 60))
-    wpm_text.innerText = wpm +" wpm";
+    wpm_text.innerText = wpm + " wpm";
 }
 
-function updateErrors(){
-    total_errors_text.innerText = (total_errors + ecount) +" errors"
+function updateErrors() {
+    total_errors_text.innerText = (total_errors + ecount) + " errors"
 }
 
-function updateAcc(){
+function updateAcc() {
     let correctCharacters = (charsTyped - (total_errors + ecount));
     acc = ((correctCharacters / charsTyped) * 100);
-    acc_text.innerText = Math.round(acc)+"% acc";
+    acc_text.innerText = Math.round(acc) + "% acc";
 }
 
-function startGame (){
-    if(gameMode=="60s"){
+function startGame() {
+    if (gameMode == "60s") {
         reset();
-    clearInterval(timer);
-    timer = setInterval(updateTimer, 1000);
+        clearInterval(timer);
+        timer = setInterval(updateTimer, 1000);
     }
-    else{
+    else {
         endless();
     }
 }
 
-function finishGame(){
+function finishGame() {
     clearInterval(timer);
-    input_area.value="";
+    input_area.value = "";
 }
 
 
 
 function processCurrentText() {
-    not_typed_chars=quote_text.innerText.length-charsTyped;
-  
-// pilla el texto y lo divide, con el split(""), que divide todo el string por chars
-curr_input = input_area.value;
-curr_input_array = curr_input.split("");
+    not_typed_chars = quote_text.innerText.length - charsTyped;
 
-// increment total characters typed
-charsTypedQuote++;
-charsTyped++;
-ecount=0;
+    // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
+    curr_input = input_area.value;
+    curr_input_array = curr_input.split("");
 
-quoteSpanArray = quote_text.querySelectorAll("span");
-quoteSpanArray.forEach((char, index) => {
-	char.classList.remove("sig_char");
-	let typedChar = curr_input_array[index]
+    // increment total characters typed
+    charsTypedQuote++;
+    charsTyped++;
+    ecount = 0;
 
-    
+    quoteSpanArray = quote_text.querySelectorAll("span");
+    quoteSpanArray.forEach((char, index) => {
+        char.classList.remove("sig_char");
+        let typedChar = curr_input_array[index]
 
-    if (typedChar == null) {
-        char.classList.remove("correct_char");
-        char.classList.remove("incorrect_char");
-        
-        // char correcto, añade los spans a la clase correct_char
-    } else if (typedChar == char.innerText) {
-        char.classList.add("correct_char");
-        char.classList.remove("incorrect_char");
-        
-        // char incorrecto, añade los spans a la clase incorrect_char
-    } else{
-        if(!char.classList.contains('espacio')){
-            char.classList.add("incorrect_char");
+
+
+        if (typedChar == null) {
             char.classList.remove("correct_char");
-            ecount++;
+            char.classList.remove("incorrect_char");
+
+            // char correcto, añade los spans a la clase correct_char
+        } else if (typedChar == char.innerText) {
+            char.classList.add("correct_char");
+            char.classList.remove("incorrect_char");
+
+            // char incorrecto, añade los spans a la clase incorrect_char
+        } else {
+            if (!char.classList.contains('espacio')) {
+                char.classList.add("incorrect_char");
+                char.classList.remove("correct_char");
+                ecount++;
+            }
         }
-    }
-    if(index==(curr_input_array.length)){
-        char.classList.add("sig_char");
-    }
+        if (index == (curr_input_array.length)) {
+            char.classList.add("sig_char");
+        }
 
 
 
-if(typedChar==" " && quoteSpanArray[index].innerText==" "){
-    char.classList.add("correct_char");
-    char.classList.remove("incorrect_char");
-}
+        if (typedChar == " " && quoteSpanArray[index].innerText == " ") {
+            char.classList.add("correct_char");
+            char.classList.remove("incorrect_char");
+        }
 
-});
-updateWPM();
-updateErrors();
-updateAcc();
-
-    comprobarTextoAcabado();
-}
-
-function updateTimerEndless(){
-    uptime++;
-    time_left_text.innerText = uptime +"s";
+    });
     updateWPM();
+    updateErrors();
+    updateAcc();
+    comprobarTextoAcabado();
+    if (charsTyped > 30) {
+        scroll();
+    }
 }
+    function scroll() {
+        quote_text.scrollLeft += 7;
+    }
 
-function endless(){
-    reset();
-    clearInterval(timer);
-    timer = setInterval(updateTimerEndless, 1000);
+    function updateTimerEndless() {
+        uptime++;
+        time_left_text.innerText = uptime + "s";
+        updateWPM();
+    }
 
-}
+    function endless() {
+        reset();
+        clearInterval(timer);
+        timer = setInterval(updateTimerEndless, 1000);
+
+    }

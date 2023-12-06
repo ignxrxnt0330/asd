@@ -18,9 +18,9 @@ require('C:\xampp\htdocs\asd\pags\db_connection.php')
 </div>
 <div id="todolist_items">
 <?php
-include('../pags/db_connection.php')
+include('../pags/db_connection.php');
 
-        $sql = "SELECT count(*) as numItems  FROM todolist where completado=0";
+$sql = "SELECT count(*) as numItems  FROM todolist where completado=0";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
 while($row = mysqli_fetch_assoc($result)) {
