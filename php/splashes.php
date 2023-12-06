@@ -1,20 +1,15 @@
 <?php
 
-$splashes = fopen("C:/xampp/htdocs/asd/misc/splashes.txt","r");
+$splashes = file("C:/xampp/htdocs/asd/misc/splashes.txt", FILE_IGNORE_NEW_LINES); //abre el fichero ignorando los \n
 
-$splash = rand(1,375);
-$num_lineas=0;
-while(!feof($splashes)) {
-    $linea = fgets($splashes); // Get the next line in the file
-    $num_lineas++; // Increment the counter variable
-    if($num_lineas==$splash){
-        echo "<div id='splash'>";
-        echo $linea;
-        echo "</div>";
-        break;
-    }
+if ($splashes === false) {
+    die("Error"); //no se ha leido correctamente
 }
 
-fclose($splashes);
+$splash = rand(0, count($splashes) - 1);
+
+echo "<div class='splash'>";
+echo $splashes[$splash];
+echo "</div>";
 
 ?>

@@ -3,10 +3,22 @@
     src: url(../fonts/mc/Minecraftia-Regular.ttf);
 }
 
-#splash{
-    color:yellow;
-    font-family:"splash";
-    height:min-content;
-    justify-self:right;
-    padding:20px;
+.splash {
+    color: yellow;
+    font-family: "splash";
+    height: min-content;
+    justify-self: right;
+    padding: 20px;
+    animation: splash_ 1s alternate infinite;
+}
+
+@keyframes splash_ {
+    0% {
+        transform: scale(50%) rotate(-20deg);
+    }
+
+    100% {
+        transform: scale(100%) rotate(-20deg);
+    }
+
 }

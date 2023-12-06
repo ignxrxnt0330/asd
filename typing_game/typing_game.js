@@ -18,17 +18,17 @@ let curr_input = 0;
 let curr_input_array = 0;
 let quote_words = quote.split(" ").length;
 let words = 0;
-let wpm = words / uptime;
+let wpm = 0;
 let gameModeSelect = document.getElementById("mode"); // coge el select del html
 let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
 let gameMode = gameModeOption.text; // la variable gameMode es igual al seleccionado  
 
 let wpm_text = document.querySelector(".wpm");
-let quote_text = document.querySelector(".quote");
 let input_area = document.querySelector(".input_area");
 let total_errors_text = document.querySelector(".ecount");
 let time_left_text = document.querySelector(".time_left");
 let quoteContainer = document.querySelector(".quote")
+let quote_text;
 
 
 
@@ -91,7 +91,7 @@ function randomQuote() {
 async function nextQuote() {
     quote = await randomQuote() + " ";
     console.log(quote)
-    quote_text.value = quote;
+    quote_text+=quote;
     quote.split("").forEach(char => {
         const charSpan = document.createElement("span"); // crea un span para cada letra
         charSpan.classList.add('letra');
@@ -102,24 +102,29 @@ async function nextQuote() {
         else {
             charSpan.innerText = char; // hace que el texto del span sea la letra
         }
-        quote_text.appendChild(charSpan); // hace que el span de los chars se metan dentro de el contenedor del texto
+        quoteContainer.appendChild(charSpan); // hace que el span de los chars se metan dentro de el contenedor del texto
     })
-    if (gameMode == "60s") {
-        input_area.value = null; // borra el texto cuando se completa
-    }
+    
 }
 
 function reiniciarQuote() {
-    quote_text.innerText = "";
+    while (quoteContainer.firstChild) {
+        quoteContainer.removeChild(quoteContainer.firstChild);
+      }
+    quote_text = "";
     nextQuote();
 }
 
+function appendQuote() {
+    nextQuote();
+}
+
+
 function comprobarTextoAcabado() {
-    if (curr_input.length == quote_text.innerText.length) {
+    if (untyped_chars == 10) {
         words += quote_words;
-        reiniciarQuote();
+        appendQuote();
         total_errors += ecount;
-        input_area.value = "";
     }
 }
 
@@ -168,8 +173,6 @@ function finishGame() {
 
 
 function processCurrentText() {
-    not_typed_chars = quote_text.innerText.length - charsTyped;
-
     // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
     curr_input = input_area.value;
     curr_input_array = curr_input.split("");
@@ -178,8 +181,11 @@ function processCurrentText() {
     charsTypedQuote++;
     charsTyped++;
     ecount = 0;
+    
+    untyped_chars = quote_text.length - charsTypedQuote;
 
-    quoteSpanArray = quote_text.querySelectorAll("span");
+
+    quoteSpanArray = quoteContainer.querySelectorAll("span");
     quoteSpanArray.forEach((char, index) => {
         char.classList.remove("sig_char");
         let typedChar = curr_input_array[index]
@@ -224,7 +230,13 @@ function processCurrentText() {
     }
 }
     function scroll() {
-        quote_text.scrollLeft += 7;
+
+        const wordsWrapperWidth = ((
+            document.querySelector(".letra")
+          )).offsetWidth;
+
+        quoteContainer.scrollLeft += wordsWrapperWidth;
+
     }
 
     function updateTimerEndless() {

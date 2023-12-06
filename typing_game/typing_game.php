@@ -29,9 +29,9 @@
                         errors
                     </div>
                     <div class="gameMode">
-                        <label for="gamemode">Gamemode:</label><br>
+                        <label id="gamemode">Gamemode:</label><br>
                         <select id="mode" name="mode">
-                        <option value="enless">endless</option>
+                        <option value="endless">endless</option>
                         <option value="60s">60s</option>
                         </select>
                     </div>

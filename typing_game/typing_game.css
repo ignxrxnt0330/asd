@@ -88,15 +88,16 @@ select#mode {
     background-color: black;
     color: white;
     height: 20px;
+    border-left:1px solid;
 }
 
 @keyframes cursor {
-    0%{border-left:1px solid white;}
-    100%{border-left:0px }
+    0%,50%{border-left:1px solid white;}
+    51%,00%{border-left:1px solid black }
 }
 
 .sig_char{
-    animation: cursor 1s infinite normal;
+    animation: cursor 1.1s infinite step-start;/*step-start makes it so the change is abrupt*/
 }
 
 span{
