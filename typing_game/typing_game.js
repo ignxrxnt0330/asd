@@ -31,8 +31,7 @@ let quoteContainer = document.querySelector(".quote")
 let quote_text;
 
 
-
-
+letter_width = document.getElementsByClassName("letra")[0].offsetWidth;
 
 // event listener para el esc 
 input_area.addEventListener("keydown", function (event) {
@@ -58,6 +57,7 @@ input_area.addEventListener("keydown", function (event) {
     if (event.key === "Delete" || event.keyCode === 46) { //delete
         charsTypedQuote--;
         charsTyped--;
+        scrollDelete()
     }
 });
 
@@ -89,15 +89,17 @@ function randomQuote() {
 // await => va con la async function y para la ejecución de la función hasta que se ejecute cierto código
 
 async function nextQuote() {
-    quote = await randomQuote() + " ";
+    quote = await randomQuote()+" ";
     console.log(quote)
     quote_text+=quote;
     quote.split("").forEach(char => {
         const charSpan = document.createElement("span"); // crea un span para cada letra
         charSpan.classList.add('letra');
+        
         if (char == " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
             charSpan.innerHTML = "&nbsp;"; // espacio
             charSpan.classList.add('espacio');
+            charSpan.classList.remove('letra');
         }
         else {
             charSpan.innerText = char; // hace que el texto del span sea la letra
@@ -176,7 +178,7 @@ function processCurrentText() {
     // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
     curr_input = input_area.value;
     curr_input_array = curr_input.split("");
-
+    
     // increment total characters typed
     charsTypedQuote++;
     charsTyped++;
@@ -184,6 +186,7 @@ function processCurrentText() {
     
     untyped_chars = quote_text.length - charsTypedQuote;
 
+    
 
     quoteSpanArray = quoteContainer.querySelectorAll("span");
     quoteSpanArray.forEach((char, index) => {
@@ -211,6 +214,8 @@ function processCurrentText() {
         }
         if (index == (curr_input_array.length)) {
             char.classList.add("sig_char");
+           
+            
         }
 
 
@@ -225,18 +230,20 @@ function processCurrentText() {
     updateErrors();
     updateAcc();
     comprobarTextoAcabado();
-    if (charsTyped > 30) {
+    if (charsTypedQuote > 30) {
         scroll();
     }
 }
     function scroll() {
+        if (event.key !== "Delete" || event.keyCode !== 46) {
+        quoteContainer.scrollLeft +=  letter_width;
+        console.log(letter_width);
+        }
+    }
 
-        const wordsWrapperWidth = ((
-            document.querySelector(".letra")
-          )).offsetWidth;
-
-        quoteContainer.scrollLeft += wordsWrapperWidth;
-
+    function scrollDelete() {
+        
+        quoteContainer.scrollLeft  -= letter_width;
     }
 
     function updateTimerEndless() {
@@ -247,6 +254,7 @@ function processCurrentText() {
 
     function endless() {
         reset();
+
         clearInterval(timer);
         timer = setInterval(updateTimerEndless, 1000);
 

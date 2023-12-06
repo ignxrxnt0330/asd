@@ -37,6 +37,7 @@
                     </div>
                 </div>
                 <span class="quote">
+                    <div class="letra">⠀</div>
                 </span>
             </div>
             <div class="abajo">
