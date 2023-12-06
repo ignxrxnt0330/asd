@@ -98,3 +98,15 @@ span:hover header marquee{
     display:grid;
     flex-wrap:wrap;
 }
+
+::-webkit-scrollbar{
+    background-color:black;
+}
+
+
+  
+
+  ::-webkit-scrollbar-thumb {
+    background-color: black;
+    border:1px white solid;
+  }

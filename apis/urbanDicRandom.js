@@ -5,6 +5,7 @@ const container2 = document.getElementById('urbanDicRandom');
     let thumbsUp2 = null;
     let thumbsDown2 = null;
     let link2 = null;
+    let date = null;
 
     
     let spanThumbs2 = ""
@@ -30,6 +31,8 @@ function randomWord(){
      thumbsUp2 = data.list[0].thumbs_up;
      thumbsDown2 = data.list[0].thumbs_down;
      link2 = data.list[0].permalink;
+     date = data.list[0].written_on;
+     date = date.slice(0,10)
      console.log(definition2)
      createSpans2();
     })
@@ -38,14 +41,15 @@ function randomWord(){
     
 
 function createSpans2(){
-     spanword2 = document.createElement('a')
+    spanword2 = document.createElement('a')
     spanword2.classList.add('word')
     spanword2.href=link2
     spanword2.target = "_blank"
-    spanword2.innerText = word2;
+    spanword2.innerText = word2 +"   "+date;
+    spanword2.style.whiteSpace = "wrap"
     container2.appendChild(spanword2);
     
-     spandefinition2 = document.createElement('span')
+    spandefinition2 = document.createElement('span')
     spandefinition2.classList.add('definition')
     spandefinition2.innerText = definition2;
     container2.appendChild(spandefinition2);

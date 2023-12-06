@@ -19,7 +19,6 @@ require("db_connection.php");
         include("../templates/asd.php");
     ?>
     
-    <!--- Items sin completar --->
     <div id="asd">
         <div id="insertar">
             <form action="../php/nuevoItem_tdl.php" method="post">
@@ -44,7 +43,7 @@ require("db_connection.php");
             }
         }
 
-        $sql = "SELECT *  FROM todolist where completado=0 order by fecha,id desc";
+        $sql = "SELECT *  FROM todolist where completado=0 order by fecha desc,id desc";
             $result = mysqli_query($conn, $sql);
             
             if (mysqli_num_rows($result) > 0) {
@@ -75,7 +74,7 @@ require("db_connection.php");
                    $items=$row['numItems'];
                    echo "$items items";
                    }
-               }
+               } 
                     $sql = "SELECT *  FROM todolist where completado=1 order by fecha" ;
         $result = mysqli_query($conn, $sql);
 
@@ -85,8 +84,6 @@ require("db_connection.php");
                 echo "<div id=todolist_item_completado><a href='../php/descompletar_tdl.php?iddesc=$iddesc'>";
                 echo "<h2>" . $row["titulo"] ."  ". $row["fecha"] . "</h2> <p>" . $row["descripcion"] ."</p>";
                 echo "</a></div>";
-            
-                
             }
             } else {
             echo "0 results";

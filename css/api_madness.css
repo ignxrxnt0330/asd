@@ -19,7 +19,8 @@
 }
 
 .api{
-    width:40%;
+    min-width:40%;
+    max-width:40%;
     height:fit-content;
     border:1px solid white;
     padding:10px;
@@ -33,6 +34,10 @@
     width:40%;
     text-align:center;
 }
+.tag a{
+    color:limegreen;
+}
+
 .container{
     width:fit-content;
 }
