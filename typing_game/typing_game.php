@@ -29,7 +29,7 @@
                         errors
                     </div>
                     <div class="gameMode">
-                        <label id="gamemode">Gamemode:</label><br>
+                        <label id="gamemode">Gamemode⠀</label><br>
                         <select id="mode" name="mode">
                         <option value="endless">endless</option>
                         <option value="60s">60s</option>
