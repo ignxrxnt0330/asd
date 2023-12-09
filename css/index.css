@@ -22,3 +22,13 @@
     }
 
 }
+
+.lineCount{
+    max-width: fit-content;
+    max-height: 10px;
+    position:relative;
+    justify-self: right;
+    top:200px;
+    z-index:5;
+    pointer-events: none; /*non focusable*/
+}

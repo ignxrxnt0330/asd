@@ -17,8 +17,7 @@
     <div id="asd">
         <?php
         include("C:/xampp/htdocs/asd/php/splashes.php");
-        // $asd= shell_exec('bash C:\xampp\htdocs\asd\misc\lineCount.sh');
-        // echo $asd
+        include("C:/xampp/htdocs/asd/php/lineCount.php");
         ?>
     </div>
 
