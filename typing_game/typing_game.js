@@ -212,7 +212,6 @@ function processCurrentText() {
     function scroll() {
         if (event.key !== "Delete" || event.keyCode !== 46) {
         quoteContainer.scrollLeft +=  letter_width;
-        console.log(letter_width);
         }
     }
 
