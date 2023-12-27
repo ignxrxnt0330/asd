@@ -20,12 +20,12 @@ let gameMode = gameModeOption.text;
 letter_width = document.getElementsByClassName("letra")[0].offsetWidth;
 
 // html elements
-let wpm_text = document.querySelector(".wpm");
-let input_area = document.querySelector(".input_area");
-let total_errors_text = document.querySelector(".ecount");
-let time_left_text = document.querySelector(".time_left");
-let quoteContainer = document.querySelector(".quote")
-let acc_text = document.querySelector(".acc");
+let wpm_text = document.querySelector('.wpm');
+let input_area = document.querySelector('.input_area');
+let total_errors_text = document.querySelector('.ecount');
+let time_left_text = document.querySelector('.time_left');
+let quoteContainer = document.querySelector('.quote')
+let acc_text = document.querySelector('.acc');
 
 
 
@@ -172,7 +172,7 @@ function processCurrentText() {
     ecount = 0;
     untyped_chars = quote_text.length - charsTypedQuote;
 
-    quoteSpanArray = quoteContainer.querySelectorAll("span");
+    quoteSpanArray = quoteContainer.querySelectorAll('span');
     quoteSpanArray.forEach((char, index) => {
         char.classList.remove("sig_char");
         let typedChar = curr_input_array[index]
