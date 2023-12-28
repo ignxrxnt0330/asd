@@ -4,12 +4,14 @@
 }
 
 .splash {
+    position:absolute;
     color: yellow;
     font-family: "splash";
     height: min-content;
     justify-self: right;
     padding: 20px;
     animation: splash_ 1s alternate infinite;
+    z-index:2;
 }
 
 @keyframes splash_ {
@@ -26,9 +28,24 @@
 .lineCount{
     max-width: fit-content;
     max-height: 10px;
-    position:relative;
+    position:absolute;
     justify-self: right;
-    top:200px;
+    top:540px;
     z-index:5;
     pointer-events: none; /*non focusable*/
+}
+
+form input{
+    background-color:black;
+    color:white;
+    border:none;
+    text-align:center;
+}
+
+
+.new_splash{
+    position:absolute;
+    max-width:min-content;
+    justify-self: center;
+    z-index:1;
 }

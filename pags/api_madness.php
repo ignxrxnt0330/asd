@@ -9,7 +9,7 @@
     <title>asd</title>
  
     <?php
-        include("../templates/asd.php");
+        include("../include/asd.php");
     ?>
 
     <div id="asd">

@@ -20,7 +20,7 @@ $compl = Todolist::getCompl();
     <title>To-do list</title>
 
     <?php
-    include("../templates/asd.php");
+    include("../include/asd.php");
     ?>
 
     <div id="asd">

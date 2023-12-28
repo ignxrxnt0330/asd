@@ -97,6 +97,7 @@ span:hover header marquee{
     height:500px;
     display:grid;
     flex-wrap:wrap;
+    z-index:5;
 }
 
 ::-webkit-scrollbar{
