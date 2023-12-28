@@ -13,7 +13,6 @@
 .word{
     color:yellow;
 }
-
 .word:hover{    
     text-decoration:underline;
 }
@@ -38,6 +37,3 @@
     color:limegreen;
 }
 
-.container{
-    width:fit-content;
-}

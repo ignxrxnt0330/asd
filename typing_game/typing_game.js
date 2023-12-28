@@ -66,7 +66,7 @@ function reset() {
     acc_text.innerText = "0% acc";
     total_errors_text.innerText ="0 errors";
 
-    input_area.innerText = "";
+    input_area.value = "";
 
     // reinicia las quotes  
     reiniciarQuote();

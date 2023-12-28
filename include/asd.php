@@ -16,9 +16,9 @@
         </span>
         <span>
             <?php
-            $pagina = pathinfo(basename($_SERVER['PHP_SELF']), PATHINFO_FILENAME);
-            if($pagina!="index")
-                echo $pagina;
+            $pageName = pathinfo(basename($_SERVER['PHP_SELF']), PATHINFO_FILENAME);
+            if($pageName!="index")
+                echo $pageName;
             else
                 echo "<a href='https://github.com/ignxrxnt0330/asd/' target='_blank'> asd </a>";
             ?>
@@ -34,7 +34,7 @@
 	</div>
     
     <div id="item">
-            <a href="/pags/api_madness.php">API madness
+            <a href="/pags/urbanDic.php">urbanDic
 				<ul id="subitems">
 				</ul>
             </a>

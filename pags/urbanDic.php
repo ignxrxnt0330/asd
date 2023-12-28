@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=icon type="image/png" href="../imgs/favicon.png">
-    <link rel="stylesheet" type="text/css" href="../css/api_madness.css">
+    <link rel="stylesheet" type="text/css" href="../css/urbanDic.css">
     <title>asd</title>
  
     <?php
@@ -13,7 +13,6 @@
     ?>
 
     <div id="asd">
-
     <div class="container">
     <div class=tag>Word of the Day</div>
         <div class="api" id="urbanDic">
@@ -26,8 +25,7 @@
         <div class="api" id="urbanDicRandom">
             <script src="../apis/urbanDicRandom.js"></script>
         </div>
-    </div>
-    
+    <div>
 
     </div>
 
