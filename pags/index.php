@@ -1,4 +1,4 @@
-<script>
+<script defer>
     function randomSplash() {
         fetch('http://localhost/php/splashes.php')
             //browsers restrict fetching from local files for security reasons, so it has to be accessed this way
@@ -24,7 +24,7 @@
     }
 
     randomSplash();
-    </script>
+</script>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -42,9 +42,9 @@
     ?>
 
     <div id="asd">
-        
+
         <a class="splash"></a>
-        
+
         <div class="new_splash">
             <form>
                 <input tpe="text" class="new_splash_input" name="splash" placeholder="new_splash"
@@ -52,32 +52,52 @@
             </form>
         </div>
 
-        <script>
+        <script defer>
             let input = document.querySelector(".new_splash_input");
             input.addEventListener("keydown", function (event) {
                 if (event.key == "Enter") {
                     event.preventDefault();
-                        $.ajax({
-                            type: 'POST',
-                            url: 'http://localhost/php/newSplash.php',
-                            data: { splash: input.value },
-                            success: function (response) {
-                                console.log(response);
-                                console.log("Splash added correctly");
-                            },
-                            error: function (error) {
-                                console.error("Error adding splash: " + error);
-                            }
-                        });
-                        input.value="";
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost/php/newSplash.php',
+                        data: { splash: input.value },
+                        success: function (response) {
+                            console.log(response);
+                            console.log("Splash added correctly");
+                        },
+                        error: function (error) {
+                            console.error("Error adding splash: " + error);
+                        }
+                    });
+                    input.value = "";
                 }
             });
         </script>
-        
 
-        <?php
-        include("C:/xampp/htdocs/asd/php/lineCount.php");
-        ?>
+        <div class=lineCount></div>
+
+        <script defer>
+                fetch('http://localhost/php/lineCount.php')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('response is not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const lc = data.lc;
+                        if (lc.trim() !== "") {
+                            document.querySelector('.lineCount').textContent = lc;
+                            console.log(lc+" lines of code");
+                        } else {                    // empty
+                            console.error("error getting line count");
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+        </script>
+
     </div>
     <script defer>
         document.querySelector('.splash').addEventListener("click", function () {

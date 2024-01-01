@@ -15,6 +15,6 @@ else{
     }
 //}
 
-echo "<div class=lineCount>" . $lc . "</div>";
+echo json_encode(['lc' => $lc]);
 
 ?>
