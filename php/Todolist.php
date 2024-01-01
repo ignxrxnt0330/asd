@@ -50,7 +50,7 @@ class Todolist
         return $todolist;
     }
 
-    public static function completar($id)
+    public static function complete($id)
     {
         $conn = getConn();
 
@@ -66,7 +66,7 @@ class Todolist
         $conn->close();
     }
 
-    public static function descompletar($id)
+    public static function uncomplete($id)
     {
         $conn = getConn();
 
@@ -83,27 +83,57 @@ class Todolist
     }
 
 
-public static function insertar($titulo,$descripcion,$fecha){
+    public static function insert($titulo, $descripcion, $fecha)
+    {
         $conn = getConn();
 
-        if($fecha!=""){
+        if ($fecha != "") {
             $st = $conn->prepare("insert into todolist(titulo,descripcion,fecha,completado) values(?,?,?,0)");
             if ($st === false) {
                 die($conn->error);
             }
-            $st->bind_param("sss", $titulo,$descripcion,$fecha);
-        }
-        else{
+            $st->bind_param("sss", $titulo, $descripcion, $fecha);
+        } else {
             $st = $conn->prepare("insert into todolist(titulo,descripcion,completado) values(?,?,0)");
             if ($st === false) {
                 die($conn->error);
             }
-            $st->bind_param("ss", $titulo,$descripcion);
+            $st->bind_param("ss", $titulo, $descripcion);
         }
 
         $st->execute();
 
         $conn->close();
+    }
+
+    public static function create_items()
+    {
+        $todolist = Todolist::getTodolist();
+        echo count($todolist) . " items";
+
+        if (count($todolist) > 0) {
+            foreach ($todolist as $item) {
+                echo "<a href='../php/complete_tdl.php?idcompl=$item->id'><div id=todolist_item>";
+                echo "<h2>" . $item->titulo . "  " . $item->fecha . "</h2> <p>" . $item->descripcion . "</p>";
+                echo "</div></a>";
+            }
+        } else {
+            echo "No items to show";
+        }
+    }
+
+    public static function create_compl()
+    {
+        $compl=Todolist::getCompl();
+        if (count($compl)) {
+            foreach ($compl as $item) {
+                echo "<div id=todolist_item_completado><a href='../php/uncomplete_tdl.php?iddesc=$item->id'>";
+                echo "<h2>" . $item->titulo . "  " . $item->fecha . "</h2> <p>" . $item->descripcion . "</p>";
+                echo "</a></div>";
+            }
+        } else {
+            echo "0 results";
+        }
     }
 
 }
