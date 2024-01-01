@@ -24,7 +24,7 @@
     }
 
     randomSplash();
-</script>
+    </script>
 
 <!DOCTYPE html>
 <html lang="es">

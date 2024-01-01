@@ -4,6 +4,21 @@ require("../php/Todolist.php");
 
 $todolist = Todolist::getTodolist();
 
+function create_items($todolist)
+{
+    echo count($todolist) . " items";
+
+    if (count($todolist) > 0) {
+        foreach ($todolist as $item) {
+            echo "<a href='../php/completar_tdl.php?idcompl=$item->id'><div id=todolist_item>";
+            echo "<h2>" . $item->titulo . "  " . $item->fecha . "</h2> <p>" . $item->descripcion . "</p>";
+            echo "</div></a>";
+        }
+    } else {
+        echo "No items to show";
+    }
+}
+
 $compl = Todolist::getCompl();
 
 ?>
@@ -24,8 +39,8 @@ $compl = Todolist::getCompl();
     ?>
 
     <div id="asd">
-        <div id="insertar">
-            <form action="../php/nuevoItem_tdl.php" method="post">
+    <div id="insertar">
+            <form action="../php/new_item_tdl.php" method="post">
                 <input type="text" name="titulo" placeholder="asd" autocomplete="off"><br>
 
                 <input type="text" name="descripcion" placeholder="asdasdasdasdasd" autofocus autocomplete="off"><br>
@@ -34,21 +49,40 @@ $compl = Todolist::getCompl();
 
                 <input type="submit" value="Submit">
             </form>
-
-        </div>
+            </div>
+<!---
+            <script>
+            let titulo = document.querySelector(".input_title");
+            let desc = document.querySelector(".input_desc");
+            let fecha = document.querySelector(".input_date");
+            input.addEventListener("keydown", function (event) {
+                if (event.key == "Enter") {
+                    event.preventDefault();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost/php/new_item_tdl.php',
+                            data: { titulo: titulo.value ,
+                                    descripcion: desc.value ,
+                                    fecha: fecha.value ,},
+                            success: function (response) {
+                                console.log(response);
+                                console.log("Splash added correctly");
+                            },
+                            error: function (error) {
+                                console.error("Error adding splash: " + error);
+                            }
+                        });
+                        titulo.value="";
+                        desc.value="";
+                        fecha.value="";
+                }
+            });
+        </script>
+--->
         <div id="todolist_items">
             <?php
-            echo count($todolist)." items";
 
-            if(count($todolist) > 0) {
-                foreach($todolist as $item) {
-                    echo "<a href='../php/completar_tdl.php?idcompl=$item->id'><div id=todolist_item>";
-                    echo "<h2>".$item->titulo."  ".$item->fecha."</h2> <p>".$item->descripcion."</p>";
-                    echo "</div></a>";
-                }
-            } else {
-                echo "No hay items que mostrar";
-            }
+            create_items($todolist);
 
             ?>
         </div>
@@ -62,10 +96,10 @@ $compl = Todolist::getCompl();
             </input>
             <?php
 
-            if(count($compl)) {
-                foreach($compl as $item) {
+            if (count($compl)) {
+                foreach ($compl as $item) {
                     echo "<div id=todolist_item_completado><a href='../php/descompletar_tdl.php?iddesc=$item->id'>";
-                    echo "<h2>".$item->titulo."  ".$item->fecha."</h2> <p>".$item->descripcion."</p>";
+                    echo "<h2>" . $item->titulo . "  " . $item->fecha . "</h2> <p>" . $item->descripcion . "</p>";
                     echo "</a></div>";
                 }
             } else {
