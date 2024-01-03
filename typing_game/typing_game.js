@@ -14,10 +14,10 @@ let curr_input = 0;
 let curr_input_array = 0;
 let quote_text;
 let wpm = 0;
-let gameModeSelect = document.getElementById("mode"); // coge el select del html
-let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex]; // pilla el que esta seleccionado
-let gameMode = gameModeOption.text;  
-letter_width = document.getElementsByClassName("letra")[0].offsetWidth;
+let gameModeSelect = document.getElementById("mode");
+let gameModeOption = gameModeSelect.options[gameModeSelect.selectedIndex];
+let gameMode = gameModeOption.text;
+const letter_width = document.getElementsByClassName("letra")[0].offsetWidth;
 
 // html elements
 let wpm_text = document.querySelector('.wpm');
@@ -34,7 +34,7 @@ input_area.addEventListener("keydown", function (event) {
     if (event.key === "Escape" || event.keyCode === 27) {
         event.preventDefault();
         reiniciarQuote();
-        input_area.value = null; 
+        input_area.value = null;
     }
 });
 
@@ -50,12 +50,23 @@ input_area.addEventListener("keydown", function (event) { // hard reset
 
 input_area.addEventListener("keydown", function (event) {
     if (event.key === "Delete" || event.keyCode === 46) { // delete
+        event.preventDefault();
         charsTypedQuote--;
-        scrollDelete()
+        scrollDelete();
+        console.log("asd");
     }
 });
 
-
+function startGame() {
+    if (gameMode == "60s") {
+        reset();
+        clearInterval(timer);
+        timer = setInterval(updateTimer, 1000);
+    }
+    else {
+        endless();
+    }
+}
 
 function reset() {
     uptime = 0;
@@ -64,19 +75,26 @@ function reset() {
     total_errors = 0;
     charsTyped = 0;
     acc_text.innerText = "0% acc";
-    total_errors_text.innerText ="0 errors";
+    total_errors_text.innerText = "0 errors";
 
     input_area.value = "";
+    quoteContainer.style.transform = 'translateX(0)';
 
-    // reinicia las quotes  
     reiniciarQuote();
+}
+
+function endless() {
+    reset();
+    clearInterval(timer);
+    timer = setInterval(updateTimerEndless, 1000);
+
 }
 
 function randomQuote() {
     return fetch("https://api.quotable.io/random")                   // hace fetch the la quote y lo devuelve
         .then(response => response.json())  // pilla los datos y los convierte en json, de donde se extraerán los datos
         .then(data => data.content)         // extrae el campo llamado "content", que es lo importante
-        // data.lenght -> lenght of the quote, could be useful 
+    // data.lenght -> lenght of the quote, could be useful 
 }
 
 // los .then realizan acciones con el código que tienen encima, como los || en linux, van con el fech
@@ -85,13 +103,13 @@ function randomQuote() {
 // await => va con la async function y para la ejecución de la función hasta que se ejecute cierto código
 
 async function nextQuote() {
-    quote = await randomQuote()+" ";
+    quote = await randomQuote() + " ";
     console.log(quote)
-    quote_text+=quote;
+    quote_text += quote;
     quote.split("").forEach(char => {
         const charSpan = document.createElement("span"); // crea un span para cada letra
         charSpan.classList.add('letra');
-        
+
         if (char == " ") { // comprueba que el char sea un espacio, y en ese caso crea un span con un espacio
             charSpan.innerHTML = "&nbsp;"; // space
             charSpan.classList.add('space');
@@ -102,25 +120,21 @@ async function nextQuote() {
         }
         quoteContainer.appendChild(charSpan); // hace que el span de los chars se metan dentro de el contenedor del texto
     })
-    
+
 }
 
 function reiniciarQuote() {
     while (quoteContainer.firstChild) {
         quoteContainer.removeChild(quoteContainer.firstChild);
-      }
+    }
     quote_text = "";
+    //    quoteContainer.scrollIntoView();
     nextQuote();
 }
-
-function appendQuote() {
-    nextQuote();
-}
-
 
 function comprobarTextoAcabado() {
     if (untyped_chars == 10) {
-        appendQuote();
+        nextQuote();
         total_errors += ecount;
     }
 }
@@ -134,6 +148,12 @@ function updateTimer() {
     }
     else
         finishGame();
+}
+
+function updateTimerEndless() {
+    uptime++;
+    time_left_text.innerText = uptime + "s";
+    updateWPM();
 }
 
 function updateWPM() {
@@ -151,22 +171,19 @@ function updateAcc() {
     acc_text.innerText = Math.round(acc) + "% acc";
 }
 
-function startGame() {
-    if (gameMode == "60s") {
-        reset();
-        clearInterval(timer);
-        timer = setInterval(updateTimer, 1000);
-    }
-    else {
-        endless();
-    }
+function createIncorrSpan(charSpan, incorrChar) {
+    const incorrCharSpan = document.createElement("span");
+    incorrCharSpan.classList.add("incorr_char");
+    incorrCharSpan.style.marginTop = "10px;"
+    incorrCharSpan.textContent = incorrChar;
+    charSpan.appendChild(incorrCharSpan);
 }
 
 function processCurrentText() {
     // pilla el texto y lo divide, con el split(""), que divide todo el string por chars
     curr_input = input_area.value;
     curr_input_array = curr_input.split("");
-    
+
     charsTypedQuote++;
     charsTyped++;
     ecount = 0;
@@ -181,15 +198,16 @@ function processCurrentText() {
             char.classList.remove("correct_char");
             char.classList.remove("incorrect_char");
 
-           
+
         } else if (typedChar == char.innerText) { // correct_char
             char.classList.add("correct_char");
-            char.classList.remove("incorrect_char");            
+            char.classList.remove("incorrect_char");
         } else {
             if (!char.classList.contains('space')) {// incorrect_char
                 char.classList.add("incorrect_char");
                 char.classList.remove("correct_char");
                 ecount++;
+
             }
         }
         if (index == (curr_input_array.length)) {
@@ -209,25 +227,17 @@ function processCurrentText() {
         scroll();
     }
 }
-    function scroll() {
-        if (event.key !== "Delete" || event.keyCode !== 46) {
-        quoteContainer.scrollLeft +=  letter_width;
-        }
-    }
 
-    function scrollDelete() {
-        quoteContainer.scrollLeft  -= letter_width;
+function scroll() {
+    requestAnimationFrame(() => {
+        quoteContainer.style.transform = `translateX(${quoteContainer.scrollLeft + letter_width}px)`;
     }
+    );
+}
 
-    function updateTimerEndless() {
-        uptime++;
-        time_left_text.innerText = uptime + "s";
-        updateWPM();
+function scrollDelete() {
+    requestAnimationFrame(() => {
+        quoteContainer.style.transform = `translateX(${quoteContainer.scrollLeft - letter_width * 2}px)`;
     }
-
-    function endless() {
-        reset();
-        clearInterval(timer);
-        timer = setInterval(updateTimerEndless, 1000);
-
-    }
+    );
+}

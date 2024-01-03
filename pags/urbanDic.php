@@ -16,14 +16,14 @@
     <div class="container">
     <div class=tag>Word of the Day</div>
         <div class="api" id="urbanDic">
-            <script src="../js/urbanDic.js"></script>
+            <script defer src="../js/urbanDic.js"></script>
         </div>
     </div>
         
     <div class="container">
     <div class=tag id="reload_btn"><a href="">Random word</a> </div>
         <div class="api" id="urbanDicRandom">
-            <script src="../js/urbanDicRandom.js"></script>
+            <script defers src="../js/urbanDicRandom.js"></script>
         </div>
     <div>
 

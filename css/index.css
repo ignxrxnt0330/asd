@@ -12,6 +12,7 @@
     padding: 20px;
     animation: splash_ 1s alternate infinite;
     z-index:2;
+    pointer-events: none; 
 }
 
 @keyframes splash_ {

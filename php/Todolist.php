@@ -1,5 +1,8 @@
 <?php
 require("C:/xampp/htdocs/asd/pags/db_connection.php");
+
+
+
 class Todolist
 {
 
@@ -125,6 +128,8 @@ class Todolist
     public static function create_compl()
     {
         $compl=Todolist::getCompl();
+        echo "<span class='complete'>Complete - " . count($compl) . "</span>";
+
         if (count($compl)) {
             foreach ($compl as $item) {
                 echo "<div id=todolist_item_completado><a href='../php/uncomplete_tdl.php?iddesc=$item->id'>";

@@ -33,7 +33,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel=icon type="image/png" href="../imgs/favicon.png">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -47,7 +46,7 @@
 
         <div class="new_splash">
             <form>
-                <input tpe="text" class="new_splash_input" name="splash" placeholder="new_splash"
+                <input type="text" class="new_splash_input" name="splash" placeholder="new_splash"
                     autocomplete="off"></input>
             </form>
         </div>
@@ -75,35 +74,36 @@
         </script>
 
         <div class=lineCount></div>
-
         <script defer>
-                fetch('http://localhost/php/lineCount.php')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('response is not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        const lc = data.lc;
-                        if (lc.trim() !== "") {
-                            document.querySelector('.lineCount').textContent = lc;
-                            console.log(lc+" lines of code");
-                        } else {                    // empty
-                            console.error("error getting line count");
-                        }
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
+            document.querySelector('.splash').addEventListener("click", function () {
+                console.log("asd");
+                randomSplash();
+            });
         </script>
-
+        <script defer>
+            fetch('http://localhost/php/lineCount.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('response is not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const lc = data.lc;
+                    if (lc.trim() !== "") {
+                        document.querySelector('.lineCount').textContent = lc;
+                        console.log(lc + " lines of code");
+                    } else {                    // empty
+                        console.error("error getting line count");
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+        
     </div>
-    <script defer>
-        document.querySelector('.splash').addEventListener("click", function () {
-            randomSplash();
-        });
-    </script>
+
     </body>
 
 </html>

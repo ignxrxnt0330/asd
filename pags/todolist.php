@@ -23,7 +23,7 @@ $compl = Todolist::getCompl();
     ?>
 
     <div id="asd">
-    <div id="insertar">
+        <div id="insertar">
             <form action="../php/new_item_tdl.php" method="post">
                 <input type="text" name="titulo" placeholder="asd" autocomplete="off"><br>
 
@@ -33,28 +33,17 @@ $compl = Todolist::getCompl();
 
                 <input type="submit" value="Submit">
             </form>
-            </div>
+        </div>
 
         <div id="todolist_items">
-            <?php
-
-            Todolist::create_items();
-
-            ?>
+            <?php Todolist::create_items(); ?>
         </div>
 
         <!--- Complete items --->
         <div id="complete">
             <hr>
-            <input type="checkbox" id="cerrar">
-            Complete -
-            <?= count($compl) ?>
-            </input>
-            <?php
-
-            Todolist::create_compl();
-
-            ?>
+            <input type="checkbox" id="cerrar"/>
+            <?php Todolist::create_compl(); ?>
             <div>
             </div>
 

@@ -12,7 +12,7 @@ const container = document.getElementById('urbanDic');
     // Extract the required data
      word = data.list[0].word;
      definition = data.list[0].definition;
-     definition = definition.replace(/\r\n/g, ''); //sustituye las partes de código que dan problema por un br
+     definition = definition.replace(/\r\n/g, '').replace(/[\[\]]/g, '');
      thumbsUp = data.list[0].thumbs_up;
      thumbsDown = data.list[0].thumbs_down;
      link = data.list[0].permalink;
@@ -21,10 +21,6 @@ const container = document.getElementById('urbanDic');
     
   })
   .catch(error => console.error(error));
-    
-
-
-
     
 function createSpans(){
     let spanWord = document.createElement('a')
