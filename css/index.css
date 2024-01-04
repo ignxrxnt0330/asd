@@ -7,12 +7,10 @@
     position:absolute;
     color: yellow;
     font-family: "splash";
-    height: min-content;
     justify-self: right;
     padding: 20px;
     animation: splash_ 1s alternate infinite;
-    z-index:2;
-    pointer-events: none; 
+    
 }
 
 @keyframes splash_ {
@@ -33,7 +31,6 @@
     justify-self: right;
     top:540px;
     z-index:5;
-    pointer-events: none; /*non focusable*/
 }
 
 form input{
