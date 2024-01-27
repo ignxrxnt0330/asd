@@ -10,6 +10,7 @@
     justify-self: right;
     padding: 20px;
     animation: splash_ 1s alternate infinite;
+    cursor:pointer;
     
 }
 
@@ -30,7 +31,7 @@
     position:absolute;
     justify-self: right;
     top:540px;
-    z-index:5;
+    pointer-events: none;
 }
 
 form input{

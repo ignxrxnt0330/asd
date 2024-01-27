@@ -13,6 +13,8 @@
         include("../include/asd.php");
     ?>
 
+<script defer src="typing_game.js"></script>
+
         <div id="asd" class="game">
             <div class="arriba">
                 <div class="info">
@@ -39,6 +41,7 @@
                 <span class="quote">
                     <div class="letra">⠀</div>
                 </span>
+                <span class="cursor"></span>
             </div>
             <div class="abajo">
                 <textarea class="input_area" id="input_area" autofocus placeholder="asdadasd..." 
@@ -47,6 +50,5 @@
             </div>
         </div>
         
-    <script src="typing_game.js"></script>
     </body>
 </html>
